@@ -1,3 +1,28 @@
 .list-group-item {
   line-height: 2.5;
 }
+body {
+  background-color: #f08a5d ;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.navbar {
+  background-color: transparent !important;
+ 
+}
+/*  this is the color for the box within the sign up card */
+.modal-page{
+  padding: 30px;
+  background-color: #b83b5e;
+}
+/*  changing the color of the signup button*/
+.signup-button{
+background-color: #6a2c70;
+}
+  
+#Questinos{
+  background-color: #b83b5e;
+}
+
