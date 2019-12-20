@@ -1,6 +1,6 @@
 
 module.exports = function (sequelize, DataTypes) {
-    var Score = sequelize.define("Scores", {
+    var Scores = sequelize.define("Scores", {
         daily: {
             type: DataTypes.INTEGER,
             defaultValue: 0
@@ -11,5 +11,5 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    return Score;
+    return Scores;
 };
