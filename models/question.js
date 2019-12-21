@@ -2,7 +2,7 @@
 module.exports = function (sequelize, DataTypes) {
     var Questions = sequelize.define("Questions", {
         questions: {
-            type: DataTypes.STING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         answers: {

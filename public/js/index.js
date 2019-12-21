@@ -6,32 +6,8 @@ var $exampleList = $("#example-list");
 
 
 
-// for (var i = 1; i < 50; i++) {
-//   $.ajax({
-//     url: "http://jservice.io/api/category?&id=" + i,
-//     method: "GET"
-//   }).then(function (data) {
-//     console.log(data);
-//   });
-// };
+var triviaQuestions = [];
 
-
-// $.ajax({
-//   url: "http://jservice.io/api/category?&id=1",
-//   method: "GET"
-// }).then(function (data) {
-//   console.log(data);
-// })
-
-
-//getting the category with the ID
-
-// $.ajax({
-//   url: "http://jservice.io/api/category?&id=1",
-//   method: "GET"
-// }).then(function (data) {
-//   console.log(data);
-// })
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -51,14 +27,31 @@ function shuffle(array) {
   return array;
 }
 
-function getFalse(id) {
-
+var questionIds = [];
+for (var i = 1; i < 11; i++) {
   $.ajax({
-    url: "http://jservice.io/api/category?&id=1",
+    url: "http://jservice.io/api/category?&id=" + i,
     method: "GET"
   }).then(function (data) {
-    console.log(data.clues[0])
+    // console.log(data.id)
+    getQuestion(data.id);
+    questionIds.push(data.id)
+  });
+};
+
+
+
+function getQuestion(id) {
+
+  $.ajax({
+    url: "http://jservice.io/api/category?&id=" + id,
+    method: "GET"
+  }).then(function (data) {
+    // console.log(data.clues[0].question)
     var answer = data.clues[0].answer
+    var question = data.clues[0].question
+    // console.log(question)
+    // console.log(answer)
     falseQuestions = [];
     //loop through all answers and push to falseQuestions
     for (var i = 0; i < data.clues.length; i++) {
@@ -79,13 +72,27 @@ function getFalse(id) {
       shuffleFalse = shuffle(filteredFalse);
       return shuffleFalse.slice(0, 3)
     }
-    // final three answers
-    console.log(falseAnswers);
+
+    // create object with question, answer and false answers
+    var triviaObj = {
+      question: question,
+      answer: answer,
+      falseAnswers: falseAnswers
+    };
+    // push 10 trivia objects into triviaquestions array
+    return triviaObj
+  }).then(function (result) {
+
+    triviaQuestions.push(result)
+    console.log(triviaQuestions)
   })
-};
+}
 
 
-getFalse();
+
+
+
+
 
 
 // The API object contains methods for each kind of request we'll make
