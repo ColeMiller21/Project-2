@@ -22,5 +22,36 @@ background-color: #6a2c70;
 #Questinos{
     background-color: #b83b5e;
 }
+/* image size*/
+.card-img-top{
+    width: auto;
+    height: 300px;
+    }
+    /* imagez size for 2nd img */
+    .card-img-toptwo{
+        margin-top: auto;   
+        height: 300px;
+    }
+    
+    
+    /* imagez size for 3rd img */
+    .card-img-topthree{
+        width: auto;
+        height: 300px;
+    }
+    
 
-  
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    height: 300px;
+  }
+
+  /* card placement    */
+  .card{    
+    border:1px solid #b83b5e;
+  }
+ 
