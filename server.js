@@ -8,6 +8,9 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// Cron
+var cron = require('node-cron');
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -28,6 +31,11 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+// Running the new quiz grab and score reset every 24h at midnight
+cron.schedule('0 0 * * *', () => {
+  // This is where the functions to do the actions described above wil be placed
+});
 
 // Routes
 require("./routes/apiRoutes")(app);

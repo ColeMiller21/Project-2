@@ -1,3 +1,4 @@
+
 var triviaQuestions = [];
 
 function shuffle(array) {
@@ -16,8 +17,10 @@ function shuffle(array) {
     array[randomIndex] = temporaryValue;
   }
 
+
   return array;
 }
+
 
 var questionIds = [];
 
@@ -94,6 +97,7 @@ function getQuestion(id) {
 
   })
 }
+
 
 
 
