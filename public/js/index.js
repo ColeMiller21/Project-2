@@ -1,99 +1,111 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function (example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function () {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function (id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+var triviaQuestions = [];
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    var $examples = data.map(function (example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function (event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
   }
 
-  API.saveExample(example).then(function () {
-    refreshExamples();
-  });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+  return array;
+}
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function () {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
-  });
-};
+var questionIds = [];
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+// for (var i = 1; i < 11; i++) {
+//   $.ajax({
+//     url: "http://jservice.io/api/category?&id=" + id,
+//     method: "GET"
+//   }).then(function (data) {
+//     //console.log(data.id)
+//     questionIds.push(data.id)
+//     // console.log(questionIds)
+//   });
+// }
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function loopQuestions() {
+
+  for (var i = 1; i < 11; i++) {
+    getQuestion(getRandomInt(1, 300))
+  }
+
+}
+
+loopQuestions();
+
+function getQuestion(id) {
+
+  $.ajax({
+    url: "http://jservice.io/api/category?&id=" + id,
+    method: "GET"
+  }).then(function (data) {
+    // console.log(data.clues[0].question)
+    var answer = data.clues[0].answer
+    var question = data.clues[0].question
+    console.log(data)
+    // console.log(question)
+    // console.log(answer)
+    falseQuestions = [];
+    //loop through all answers and push to falseQuestions
+    for (var i = 0; i < data.clues.length; i++) {
+
+      allAnswers = data.clues[i].answer;
+      falseQuestions.push(allAnswers)
+    }
+    // filter the answer out of the array
+    var filteredFalse = falseQuestions.filter(function (e) {
+      return e !== answer
+    });
+    // shuffle the remaining answers to get a random 3 at the beginning
+    var shuffleFalse = shuffle(filteredFalse);
+    // slice the array to only grab the first 3 answers
+    var falseAnswers = shuffleFalse.slice(0, 3)
+    // if the answer is in the array reshuffle array to get a new 3 answers
+    if (falseAnswers.includes(answer)) {
+      shuffleFalse = shuffle(filteredFalse);
+      return shuffleFalse.slice(0, 3)
+    }
+
+    // create object with question, answer and false answers
+    var triviaObj = {
+      question: question,
+      answer: answer,
+      falseAnswers: falseAnswers
+    };
+    // push 10 trivia objects into triviaquestions array
+    triviaQuestions.push(triviaObj)
+    console.log(triviaQuestions)
+
+
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
