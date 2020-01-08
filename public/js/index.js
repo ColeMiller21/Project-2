@@ -1,11 +1,3 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
-
-
 var triviaQuestions = [];
 
 function shuffle(array) {
@@ -28,18 +20,33 @@ function shuffle(array) {
 }
 
 var questionIds = [];
-for (var i = 1; i < 11; i++) {
-  $.ajax({
-    url: "http://jservice.io/api/category?&id=" + i,
-    method: "GET"
-  }).then(function (data) {
-    // console.log(data.id)
-    getQuestion(data.id);
-    questionIds.push(data.id)
-  });
-};
 
+// for (var i = 1; i < 11; i++) {
+//   $.ajax({
+//     url: "http://jservice.io/api/category?&id=" + id,
+//     method: "GET"
+//   }).then(function (data) {
+//     //console.log(data.id)
+//     questionIds.push(data.id)
+//     // console.log(questionIds)
+//   });
+// }
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function loopQuestions() {
+
+  for (var i = 1; i < 11; i++) {
+    getQuestion(getRandomInt(1, 300))
+  }
+
+}
+
+loopQuestions();
 
 function getQuestion(id) {
 
@@ -50,6 +57,7 @@ function getQuestion(id) {
     // console.log(data.clues[0].question)
     var answer = data.clues[0].answer
     var question = data.clues[0].question
+    console.log(data)
     // console.log(question)
     // console.log(answer)
     falseQuestions = [];
@@ -80,11 +88,10 @@ function getQuestion(id) {
       falseAnswers: falseAnswers
     };
     // push 10 trivia objects into triviaquestions array
-    return triviaObj
-  }).then(function (result) {
-
-    triviaQuestions.push(result)
+    triviaQuestions.push(triviaObj)
     console.log(triviaQuestions)
+
+
   })
 }
 
@@ -95,96 +102,6 @@ function getQuestion(id) {
 
 
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function (example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getQuestions: function () {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  getAnswers: function (id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "GET"
-    });
-  }
-};
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    var $examples = data.map(function (example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function (event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function () {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function () {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
