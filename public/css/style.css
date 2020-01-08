@@ -1,5 +1,5 @@
 body {
-    background-color: #f08a5d ;
+    background-color: #EF233C ;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
@@ -12,15 +12,15 @@ body {
 /*  this is the color for the box within the sign up card */
 .modal-page{
     padding: 30px;
-    background-color: #b83b5e;
+    background-color: #ff3b3b;
 }
 /*  changing the color of the signup button*/
 .signup-button{
-background-color: #6a2c70;
+background-color: #EF233C;
 }
     
 #Questinos{
-    background-color: #b83b5e;
+    background-color: black;
 }
 /* image size*/
 .card-img-top{
@@ -52,6 +52,6 @@ background-color: #6a2c70;
 
   /* card placement    */
   .card{    
-    border:1px solid #b83b5e;
+    border:1px solid #d80404;
   }
  
