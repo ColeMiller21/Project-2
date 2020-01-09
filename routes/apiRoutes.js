@@ -1,17 +1,30 @@
 var db = require("../models");
-var axios = require("axios")
+
+
+var triviaQuestions = require("../public/js/app.js")
 module.exports = function (app) {
 
   // Get all examples
   app.get("/api/examples", function (req, res) {
 
-
   });
 
   // Create a new example
-  app.post("/api/examples", function (req, res) {
+  app.post("/api/user", function (req, res) {
+    console.log(req.body)
+
+    db.Users.Create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+
+    }).then(function (data) {
+      res.json(data);
+    })
 
   });
+
+
 
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
@@ -19,14 +32,5 @@ module.exports = function (app) {
   });
 
 
-
-
 };
 
-for (var i = 1; i < 11; i++) {
-  axios.get("http://jservice.io/api/category?&id=" + i + "&count=10")
-    .then(function (response) {
-      console.log(response.data)
-
-    })
-}

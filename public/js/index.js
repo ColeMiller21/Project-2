@@ -24,17 +24,6 @@ function shuffle(array) {
 
 var questionIds = [];
 
-// for (var i = 1; i < 11; i++) {
-//   $.ajax({
-//     url: "http://jservice.io/api/category?&id=" + id,
-//     method: "GET"
-//   }).then(function (data) {
-//     //console.log(data.id)
-//     questionIds.push(data.id)
-//     // console.log(questionIds)
-//   });
-// }
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -94,12 +83,35 @@ function getQuestion(id) {
     triviaQuestions.push(triviaObj)
     console.log(triviaQuestions)
 
-
   })
 }
 
 
 
+
+
+
+// sumbit button on sign up page
+$("#signup-submit").on("click", function () {
+  var username = $("#username-input");
+  var email = $("email-input");
+  var password = $("#password-input");
+
+  var newUser = {
+    username: username.val().trim(),
+    email: email.val().trim(),
+    password: password.val().trim()
+  }
+
+
+  $.ajax("api/user", {
+    type: "POST",
+    data: newUser
+  }).then(function () {
+    console.log("User Created")
+
+  })
+})
 
 
 
