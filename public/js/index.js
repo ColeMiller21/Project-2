@@ -96,6 +96,27 @@ function getQuestion(id) {
 }
 
 
+// sumbit button on sign up page
+$("#signup-submit").on("click", function () {
+  var username = $("#username-input");
+  var email = $("email-input");
+  var password = $("#password-input");
+
+  var newUser = {
+    username: username.val().trim(),
+    email: email.val().trim(),
+    password: password.val().trim()
+  }
+
+
+  $.ajax("api/user", {
+    type: "POST",
+    data: newUser
+  }).then(function () {
+    console.log("User Created")
+
+  })
+})
 
 
 
