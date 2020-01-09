@@ -11,20 +11,26 @@ module.exports = function (app) {
             //checking to see if the user has sent credentials that are currently in the db
             db.Users.findAll({
                 where: {
-                    email: username,
+                    email: email,
                     password: password
                 }
             }).then(function (data) {
+                // console.log(data);
                 //if the data returned has returned more than one entry than the user is considered logged in
-                if (data.Users.length > 0) {
+                if (data.length > 0) {
                     req.session.loggedin = true;
-                    req.session.username = username;
-                    res.status(200).end();
+                    req.session.username = email;
+                    console.log("hs");
+                    return res.status(200).end();
                 } else {
                     //if the data returned has nothing than a status code of 400 is sent to signify a failure
-                    res.status(400).end();
+                    console.log("hf");
+                    return res.status(400).end();
                 }
             });
+
+        } else {
+            return res.send("Please enter a username/password").status(400).end();
         }
     });
 
