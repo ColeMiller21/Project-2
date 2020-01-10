@@ -97,15 +97,3 @@ function getQuestion(id) {
 
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-

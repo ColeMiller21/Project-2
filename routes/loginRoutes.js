@@ -35,6 +35,7 @@ module.exports = function (app) {
 
     // This is for a user signing up for the first time
     app.post("/user/signup", function (req, res) {
+        console.log(req.body);
         var username = req.body.username;
         var email = req.body.email;
         var password = req.body.password;

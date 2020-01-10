@@ -11,8 +11,7 @@ async function createQuestions() {
         var currentQuestion = await getQuestion();
         triviaQuestions.push(currentQuestion);
     }
-
-    return triviaQuestions;
+    return triviaQuestions();
 }
 
 
@@ -28,8 +27,14 @@ async function getQuestion() {
                 // Saving variables for easier use
                 var clueCount = res.data.clues_count;
                 var randomQuestion = Math.round(Math.random() * (clueCount - 1));
+
+                // Grabbing question information
                 var answer = res.data.clues[randomQuestion].answer;
                 var question = res.data.clues[randomQuestion].question;
+                var question_id = res.data.clues[randomQuestion].id;
+                var category_id = res.data.clues[randomQuestion].category_id;
+                var value = res.data.clues[randomQuestion].value;
+
                 var falseQuestions = [];
 
                 // Recursion to get a new category and question if the question holds no substance
@@ -43,7 +48,7 @@ async function getQuestion() {
                 }
                 // Filter the answer out of the array
                 var filteredFalse = falseQuestions.filter(function (e) {
-                    return e !== answer;
+                    return e !== answer && e !== "" && e !== "=";
                 });
                 // Shuffle the remaining answers to get a random 3 at the beginning
                 var shuffleFalse = arrShuffle(filteredFalse);
@@ -60,7 +65,10 @@ async function getQuestion() {
                 var triviaObj = {
                     question: question,
                     answer: answer,
-                    falseAnswers: falseAnswers
+                    falseAnswers: falseAnswers,
+                    question_id: question_id,
+                    category_id: category_id,
+                    value: value
                 };
 
                 // Resolving the promise
@@ -68,6 +76,33 @@ async function getQuestion() {
             });
     });
 };
+
+////////NEEDS WORK//////////
+// Function to replace all html tags and // in the answers and questions
+async function removeFiller() {
+    for (var i = 0; i < triviaQuestions.length; i++) {
+
+        // Storing variables for easier use
+        var currentQuestion = triviaQuestions[i].question;
+        var currentAnswer = triviaQuestions[i].answer;
+        // Replacing the unnecessary filler
+        triviaQuestions[i].question = currentQuestion.replace(/<[^>]*>/g, "");
+        triviaQuestions[i].question = currentQuestion.replace(/\/\//g, "");
+        triviaQuestions[i].answer = currentAnswer.replace(/<[^>]*>/g, "");
+        triviaQuestions[i].answer = currentAnswer.replace(/\/\//g, "");
+
+        for (var j = 0; j < triviaQuestions[i].falseAnswers.length; j++) {
+            // Storing a variable for easier use
+            var currentFalseAnswer = triviaQuestions[i].falseAnswers[j];
+
+            // Replacing the unnecessary filler
+            triviaQuestions[i].falseAnswers[j] = currentFalseAnswer.replace(/<[^>]*>/g, "");
+            triviaQuestions[i].falseAnswers[j] = currentFalseAnswer.replace(/\/\//g, "");
+        }
+    }
+
+
+}
 
 
 // Function that accepts a minimum val and a maximum val and creates a random int between the two
@@ -98,6 +133,5 @@ function arrShuffle(array) {
     }
     return array;
 }
-
 
 module.exports = createQuestions;
