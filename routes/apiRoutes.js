@@ -1,5 +1,5 @@
 var db = require("../models");
-var axios = require("axios")
+
 module.exports = function (app) {
 
   // Get all examples
@@ -18,8 +18,18 @@ module.exports = function (app) {
 
   });
 
-
-
-
 };
 
+<<<<<<< HEAD
+=======
+
+// This is a test
+var something = require("./questionGet");
+something().then(function (results) {
+  console.log("Test");
+  console.log(results);
+  console.log(results.length);
+  console.log("End Test");
+});
+
+>>>>>>> c3a5e4cd5bf389664e4a966f54ca111c70fc60bd
