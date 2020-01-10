@@ -20,6 +20,7 @@ module.exports = function (app) {
                 //if the data returned has returned more than one entry than the user is considered logged in
                 if (data.length > 0) {
                     req.session.loggedin = true;
+
                     req.session.username = email;
                     return res.status(200).end();
                 } else {
