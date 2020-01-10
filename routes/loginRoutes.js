@@ -4,6 +4,7 @@ module.exports = function (app) {
 
     // This is for a user logging in 
     app.post("/user/auth", function (req, res) {
+        console.log(req)
         var email = req.body.email;
         var password = req.body.password;
 

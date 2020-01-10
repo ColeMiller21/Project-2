@@ -19,7 +19,7 @@
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup"> Username: </label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="displayName-input"
+                                <input type="text" class="form-control" id="username-input"
                                     aria-describedby="basic-addon3" placeholder="Display Username">
                             </div>
 
@@ -31,7 +31,7 @@
                             <label for="basic-url" id="pw-signup">Password (must be at least 6 characters):
                             </label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="pw-input"
+                                <input type="password" class="form-control" id="password-input"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
 
@@ -57,13 +57,13 @@
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup">Email: </label>
                             <div class="input-group mb-3">
-                                <input type="email" class="form-control" id="email-login-input"
+                                <input type="email" class="form-control" id="login-email"
                                     aria-describedby="basic-addon3" placeholder="User@email.com">
                             </div>
                             <label for="basic-url" id="pw-signup">Password:
                             </label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="pw-login-input"
+                                <input type="password" class="form-control" id="login-password"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
                             <div id="buttons">
@@ -102,18 +102,21 @@
 
         <div class="menu">
             <div class="btn-group">
-                <button class="button" type="button">
-                    <h2>10 Question Blitz</h2>
-                </button><br>
-                <button class="button" type="button">
-                    <h2>Daily Challenge</h2>
-                </button><br>
-                <button class="button" type="button">
-                    <h2>Weekly Challenge</h2>
-                </button>
+
+                <a href="blitz.handlebars"> <button class="button" type="button">
+                        <h2>10 Question Blitz</h2>
+                    </button>
+                </a>
+                <a href="daily.handlebars"> <button class="button" type="button">
+                        <h2> Daily Challenges</h2>
+                    </button>
+                </a>
+                <a href="weekly.handlebars"> <button class="button" type="button">
+                        <h2> Weekly Challenges</h2>
+                    </button>
+                </a>
             </div>
         </div>
-    </body>
 
 </div>
 </div>

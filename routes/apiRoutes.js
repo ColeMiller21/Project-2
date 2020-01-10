@@ -8,19 +8,19 @@ module.exports = function (app) {
 
   });
 
-  // Create a new example
+  // User score create...
   app.post("/api/user", function (req, res) {
 
-
   });
-
-
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
-
-  });
-
 
 };
 
+
+
+var something = require("./questionGet");
+something().then(function (results) {
+  console.log("Test");
+  console.log(results);
+  console.log(results.length);
+  console.log("End Test");
+});
