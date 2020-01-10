@@ -1,8 +1,6 @@
-
 var db = require("../models");
 
 
-var triviaQuestions = require("../public/js/app.js")
 
 module.exports = function (app) {
 
@@ -20,3 +18,10 @@ module.exports = function (app) {
 
 
 
+var something = require("./questionGet");
+something().then(function (results) {
+  console.log("Test");
+  console.log(results);
+  console.log(results.length);
+  console.log("End Test");
+});

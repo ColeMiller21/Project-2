@@ -2,11 +2,12 @@ var db = require("../models");
 
 module.exports = function (app) {
 
+    // This is for a user logging in 
     app.post("/user/auth", function (req, res) {
         var email = req.body.email;
         var password = req.body.password;
 
-        //checking if the request sent contained non null variables
+        // Checking if the request sent contained non null variables
         if (email && password) {
             //checking to see if the user has sent credentials that are currently in the db
             db.Users.findAll({
@@ -20,11 +21,9 @@ module.exports = function (app) {
                 if (data.length > 0) {
                     req.session.loggedin = true;
                     req.session.username = email;
-                    console.log("hs");
                     return res.status(200).end();
                 } else {
                     //if the data returned has nothing than a status code of 400 is sent to signify a failure
-                    console.log("hf");
                     return res.status(400).end();
                 }
             });
@@ -34,6 +33,7 @@ module.exports = function (app) {
         }
     });
 
+    // This is for a user signing up for the first time
     app.post("/user/signup", function (req, res) {
         var username = req.body.username;
         var email = req.body.email;

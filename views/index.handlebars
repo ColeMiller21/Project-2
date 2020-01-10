@@ -19,7 +19,7 @@
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup"> Username: </label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="displayName-input"
+                                <input type="text" class="form-control" id="username-input"
                                     aria-describedby="basic-addon3" placeholder="Display Username">
                             </div>
 
@@ -31,7 +31,7 @@
                             <label for="basic-url" id="pw-signup">Password (must be at least 6 characters):
                             </label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="pw-input"
+                                <input type="password" class="form-control" id="password-input"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
 
@@ -56,13 +56,13 @@
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup">Email: </label>
                             <div class="input-group mb-3">
-                                <input type="email" class="form-control" id="email-login-input"
+                                <input type="email" class="form-control" id="login-email"
                                     aria-describedby="basic-addon3" placeholder="User@email.com">
                             </div>
                             <label for="basic-url" id="pw-signup">Password:
                             </label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="pw-login-input"
+                                <input type="password" class="form-control" id="login-password"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
                             <div id="buttons">
@@ -99,9 +99,11 @@
             <h5 class="card-title">10 Questions Blitz</h5>
             <p class="card-text">Welcome to the 10 questions blitz game mode. </p>
 
-            <a href="#" class="btn btn-primary" id="Questions"> Questions Blitz</a>
+            <a href="#" class="btn btn-primary" style="background-color: rgb(231, 20, 20); " id="Questions"> Questions
+                Blitz</a>
         </div>
     </div>
+    {{!-- {{here is the 2nd card for the Daily Challenges} --}}
 
     <div class="card" style="width: 20rem;">
         <img src="/images/daily.jpg" class="card-img-toptwo" alt="...">
@@ -109,10 +111,11 @@
             <h5 class="card-title">Daily Challenges</h5>
             <p class="card-text">Completing these challenges will earn players various rewards. With a new challenge
                 unlocking every day. </p>
-            <a href="#" class="btn btn-primary" id="Questions"> Daily Challenge</a>
+            <a href="#" class="btn btn-primary" style="background-color: rgb(231, 20, 20);" id="Questions"> Daily
+                Challenge</a>
         </div>
     </div>
-
+    {{!-- {{here is the 3rd card for the Weekly Challenges} --}}
     <div class="card" style="width: 20rem;">
         <img src="/images/weekly.png" class="card-img-topthree" alt="...">
         <div class="card-body">
@@ -120,7 +123,10 @@
             <p class="card-text"> Join the Weekly Challenge to see if you can be the best of the best against other
                 players around the world.
             </p>
-            <a href="#" class="btn btn-primary" id="Questions"> Weekly Challenge</a>
+            <a href="#" class="btn btn-primary" style="background-color: rgb(231, 20, 20);" id="Questions"> Weekly
+                Challenge</a>
         </div>
     </div>
 </div>
+
+<script src="./js/index.js"></script>
