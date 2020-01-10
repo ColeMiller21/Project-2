@@ -1,27 +1,23 @@
 var db = require("../models");
 
+
+
 module.exports = function (app) {
 
   // Get all examples
   app.get("/api/examples", function (req, res) {
 
-
   });
 
-  // Create a new example
-  app.post("/api/examples", function (req, res) {
-
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
+  // User score create...
+  app.post("/api/user", function (req, res) {
 
   });
 
 };
 
 
-// This is a test
+
 var something = require("./questionGet");
 something().then(function (results) {
   console.log("Test");
@@ -29,4 +25,3 @@ something().then(function (results) {
   console.log(results.length);
   console.log("End Test");
 });
-
