@@ -20,8 +20,6 @@ module.exports = function (app) {
 
 };
 
-<<<<<<< HEAD
-=======
 
 // This is a test
 var something = require("./questionGet");
@@ -32,4 +30,3 @@ something().then(function (results) {
   console.log("End Test");
 });
 
->>>>>>> c3a5e4cd5bf389664e4a966f54ca111c70fc60bd
