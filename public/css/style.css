@@ -1,40 +1,96 @@
 body {
-    background-color: #EF233C ;
+    background-image: url("https://wpmisc.com/sites/default/files/wallpaper/abstract/66172/neon-grid-hd-wallpapers-66172-5530351.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
   }
-  
+
+
+
   .navbar {
     background-color: transparent !important;
+    
    
 }
 /*  this is the color for the box within the sign up card */
 .modal-page{
     padding: 30px;
-    background-color: #ff3b3b;
+    background-color: #064453;
 }
 /*  changing the color of the signup button*/
 .signup-button{
-background-color: #EF233C;
+background-color: #021324;
 }
+/*  changing the color of the login button*/
+.login-button{
+    background-color: #021324;
+}
+
+
     
-#Questinos{
-    background-color: black;
+/* body menu */
+.menu {
+    height: 300px;
+    width: 500px;
+    margin-left: 275px;
+    margin-top: -167px;
+    text-align: center;
+    border: 1px solid transparent;
+    position: relative;
+    top: 425px;
+    
 }
-/* image size*/
+.logo {
+    text-align: center;
+    margin: 5px;
+    z-index: -5;
+    margin-top: 75px;
+}
+.button {
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-right: 80px;
+    padding-left: 80px;
+    background-color: transparent;
+    border: 3px double #ffffff;
+    border-radius: 5px;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(44, 231, 231), 0 0 40px rgb(12, 3, 90), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(12, 3, 90), 0 0 70px rgb(12, 3, 90);
+    }
+    to {
+        text-shadow: 0 0 10px white, 0 0 20px #fff, 0 0 30px #064453, 0 0 40px rgb(4, 4, 97), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(4, 4, 97), 0 0 70px rgb(4, 4, 97);
+    }
+  }
+   .btn-group {
+    margin-top: -50px;
+    
+    
+    
+}
+
+
+
+/* image size
 .card-img-top{
     width: auto;
     height: 300px;
     }
-    /* imagez size for 2nd img */
+    /* imagez size for 2nd img 
     .card-img-toptwo{
         margin-top: auto;   
         height: 300px;
     }
     
     
-    /* imagez size for 3rd img */
+    /* imagez size for 3rd img 
     .card-img-topthree{
         width: auto;
         height: 300px;
@@ -50,8 +106,10 @@ background-color: #EF233C;
     height: 300px;
   }
 
-  /* card placement    */
+  /* card placement    
   .card{    
     border:1px solid #d80404;
+
+    
   }
- 
+  */

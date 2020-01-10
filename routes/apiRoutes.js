@@ -23,10 +23,3 @@ module.exports = function (app) {
 
 };
 
-for (var i = 1; i < 11; i++) {
-  axios.get("http://jservice.io/api/category?&id=" + i + "&count=10")
-    .then(function (response) {
-      console.log(response.data)
-
-    })
-}
