@@ -246,7 +246,9 @@
             </div>
             <p id="skip" class="twidth">Skip Question</p>
     </body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        // Grabbing all divs as vars
         var ans = document.querySelectorAll(".answer");
         var resetScore = document.querySelector("#resetscore");
         var skipQues = document.querySelector("#skip");
@@ -254,11 +256,12 @@
         var loadAnim = document.querySelector("#waitanim");
         var curScore = 0;
         var data;
+
         function randIndex() {
             return Math.floor(Math.random() * 4);
         }
         function fetchReq() {
-            loading(true);
+            loading(false);
             /*put the axios link underneath*/
             axios("https://opentdb.com/api.php?amount=1&type=multiple")
                 .then(updateQues)
@@ -322,6 +325,6 @@
         })
         fetchReq();
     </script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </div>
 </div>
