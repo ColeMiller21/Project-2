@@ -390,6 +390,7 @@
                 fetchReq();
             }, 800)
         }
+        // this is the loading animation 
         function loading(fire) {
             if (fire) {
                 waiting.classList.add("loading");
@@ -399,12 +400,13 @@
                 loadAnim.classList.remove("animation");
             }
         }
+        // I had a reset button for the score but now it is going to be the start button
         resetScore.addEventListener("click", function (argument) {
             curScore = 0;
             document.querySelector("#hscore").innerHTML = curScore;
         });
         skipQues.addEventListener("click", function () {
-            loading(true);
+            loading(false);
             fetchReq();
         })
         fetchReq();
