@@ -1,4 +1,5 @@
 var db = require("../models");
+// Helper functions
 
 // Function that accepts a function and a bool to see if the user is logged in
 function checkLogInRedirect(res, logged, cb) {
@@ -9,6 +10,8 @@ function checkLogInRedirect(res, logged, cb) {
   }
 
 }
+
+// Routes
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
@@ -19,7 +22,6 @@ module.exports = function (app) {
     checkLogInRedirect(res, req.session.loggedIn, function () {
       res.render("home");
     });
-
   });
 
   // Blitz
