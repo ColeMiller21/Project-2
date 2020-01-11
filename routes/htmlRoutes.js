@@ -24,8 +24,8 @@ module.exports = function (app) {
     res.render("daily");
   });
   // weeklyhandlebars
-  app.get("/weekly/:id", function (req, res) {
-
+  app.get("/weekly", function (req, res) {
+    res.render("weekly")
   });
 
   // Render 404 page for any unmatched routes

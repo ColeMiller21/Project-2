@@ -1,3 +1,26 @@
+<style>
+    body {
+        background-image: url("https://wpmisc.com/sites/default/files/wallpaper/abstract/66172/neon-grid-hd-wallpapers-66172-5530351.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+
+
+    .navbar {
+        background-color: transparent !important;
+
+
+    }
+
+    .img-thumbnail {
+        background: transparent !important;
+        border: 0px solid transparent;
+    }
+</style>
+
+
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="d-flex w-50 order-0">
         <a class="navbar-brand mr-1"></a>
@@ -15,14 +38,12 @@
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup"> Username: </label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="displayName-input"
+                                <input type="text" class="form-control" id="username-input"
                                     aria-describedby="basic-addon3" placeholder="Display Username">
                             </div>
-
                             <label for="basic-url" id="email-signup">Email: </label>
                             <div class="input-group mb-3">
                                 <input type="email" class="form-control" id="email-input"
@@ -31,11 +52,9 @@
                             <label for="basic-url" id="pw-signup">Password (must be at least 6 characters):
                             </label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="pw-input"
+                                <input type="password" class="form-control" id="password-input"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
-
-
                             <div id="buttons">
                                 <button type="button" class="btn btn-primary signup-button" id="signup-button"
                                     data-dismiss="modal">Sign
@@ -57,13 +76,13 @@
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup">Email: </label>
                             <div class="input-group mb-3">
-                                <input type="email" class="form-control" id="email-login-input"
+                                <input type="email" class="form-control" id="login-email"
                                     aria-describedby="basic-addon3" placeholder="User@email.com">
                             </div>
                             <label for="basic-url" id="pw-signup">Password:
                             </label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="pw-login-input"
+                                <input type="password" class="form-control" id="login-password"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
                             <div id="buttons">
@@ -95,24 +114,34 @@
 <div>
 
     <body>
-        <div class="logo">
-            <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
+        <div class="logo text-center img-thumbnail">
+            <img class="img-thumbnail" src="https://fontmeme.com/permalink/200111/b067326b9386d07b69cd2d261c62ecb1.png">
         </div>
-
-        <div class="menu">
-            <div class="btn-group">
-                <button class="button" type="button">
-                    <h2>10 Question Blitz</h2>
-                </button><br>
-                <button class="button" type="button">
-                    <h2>Daily Challenge</h2>
-                </button><br>
-                <button class="button" type="button">
-                    <h2>Weekly Challenge</h2>
-                </button>
-            </div>
-        </div>
-    </body>
-
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>384</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>3409</td>
+                </tr>
+            </tbody>
+        </table>
 </div>
 </div>

@@ -6,6 +6,11 @@
         background-size: 100% 100%;
     }
 
+    .img-thumbnail {
+        background: transparent !important;
+        border: 0px solid transparent;
+    }
+
     .containerlogin {
         margin-top: 162px;
         color: white;
@@ -20,20 +25,35 @@
     }
 
     .btn {
-        color: white;
-        background-color: transparent;
-        border: 3px double #FFFFFF;
+        color: white !important;
+        border: 3px solid white;
+        border-radius: 0px;
+        width: 150px;
+        color: rgb(48, 45, 45);
+        margin: 10px;
+        background: transparent !important;
+        font-size: 14px;
         border-radius: 5px;
         -webkit-animation: glow 1s ease-in-out infinite alternate;
         -moz-animation: glow 1s ease-in-out infinite alternate;
         animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @-webkit-keyframes glow {
+        from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(44, 231, 231), 0 0 40px rgb(12, 3, 90), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(12, 3, 90), 0 0 70px rgb(12, 3, 90);
+        }
+
+        to {
+            text-shadow: 0 0 10px white, 0 0 20px #fff, 0 0 30px #064453, 0 0 40px rgb(4, 4, 97), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(4, 4, 97), 0 0 70px rgb(4, 4, 97);
+        }
     }
 </style>
 
 
 <iframe width="0" height="0" src="https://www.youtube.com/embed/vlEN8svyHj8?controls=0?rel=0&autoplay=1" frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<div class="logo">
+<div class="logo text-center img-thumbnail">
     <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
 </div>
 <div class="containerlogin">
@@ -60,14 +80,14 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <a href="index"><button class="btn btn-default">Login</button></a>
+                    <a href="home"><button class="btn btn-default">Login</button></a>
                 </div>
             </div>
         </div>
     </div>
     <div class="text-center">
-        <a href="index" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm"
-            style="font-size: larger;">Log-In
+        <a href="index" class="btn btn-default btn-rounded mb-4 modal-btn" data-toggle="modal"
+            data-target="#modalLoginForm" style="font-size: larger;">Log-In
         </a>
     </div>
 </div>
@@ -100,13 +120,13 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <a href="/views/index"><button class="btn btn-deep-orange">Sign up</button></a>
+                    <a href="/"><button class="btn btn-deep-orange">Sign up</button></a>
                 </div>
             </div>
         </div>
     </div>
     <div class="text-center">
-        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm"
-            style="font-size: larger;">Sign-Up</a>
+        <a href="index" class="btn btn-default btn-rounded mb-4 modal-btn" data-toggle="modal"
+            data-target="#modalRegisterForm" style="font-size: larger;">Sign-Up</a>
     </div>
 </div>
