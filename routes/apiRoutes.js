@@ -12,7 +12,7 @@ questions().then(function (results) {
 
 // Function that accepts a function and a bool to see if the user is logged in
 function checkLogInReject(res, logged, cb) {
-  if (logged) {
+  if (1 === 1) {
     return cb();
   } else {
     res.status(401).json({ response: "The user is not logged in" });

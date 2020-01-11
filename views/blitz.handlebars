@@ -232,10 +232,12 @@
             <div class="container twidth make-flex">
                 <p id="question"></p>
                 <div class="optnContainer make-flex">
+                    <!--
                     <p id="optn1" class="answer"></p>
                     <p id="optn2" class="answer"></p>
                     <p id="optn3" class="answer"></p>
                     <p id="optn4" class="answer"></p>
+                    -->
                     <div id="waiting"></div>
                     <div id="waitanim"></div>
                 </div>
@@ -260,12 +262,7 @@
         function randIndex() {
             return Math.floor(Math.random() * 4);
         }
-        function fetchReq() {
-            loading(false);
-            /*put the axios link underneath*/
-            axios("https://opentdb.com/api.php?amount=1&type=multiple")
-                .then(updateQues)
-        }
+
         function updateQues(response) {
             data = response.data.results[0];
             document.querySelector("#question").innerHTML = data.question;
@@ -323,7 +320,7 @@
             loading(false);
             fetchReq();
         })
-        fetchReq();
+
     </script>
 
 </div>
