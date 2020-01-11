@@ -12,14 +12,14 @@ async function createQuestions() {
         triviaQuestions.push(currentQuestion);
     }
     await removeFiller();
-    return triviaQuestions;
+    return await userQuizCreate();
 }
 
 
 // This is the main meat of the app, accessess the api to get questions and stores it in a array as an object
 async function getQuestion() {
     // Creating a random category
-    var randomCategory = getRandomInt(1, 300);
+    var randomCategory = getRandomInt(1, 5000);
     // New promise to solve async issues with pushing calls from the api to an array
     return new Promise(resolve => {
         axios.get("http://jservice.io/api/category?&id=" + randomCategory)
@@ -104,8 +104,15 @@ async function removeFiller() {
         }
     }
     return;
-
-
+}
+async function userQuizCreate() {
+    var quizes = {};
+    var tempQuiz = triviaQuestions;
+    for (var i = 0; i < triviaQuestions.length; i++) {
+        tempQuiz[i].falseAnswers.push(tempQuiz[i].answer);
+    }
+    quizes = { currentQuiz: triviaQuestions, userQuiz: tempQuiz };
+    return quizes;
 }
 
 
