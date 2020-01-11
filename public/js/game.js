@@ -8,7 +8,6 @@ var userScore = 0;
 var userChoice = "";
 var questions = [];
 
-var data;
 
 
 
@@ -33,40 +32,51 @@ function nextQuestion() {
     emptyAnswers();
     $("#question").text(currentQuestion);
     showAnswers();
-
-    console.log(counter)
+    $("#userScore").text(userScore)
 
 };
 
 $("body").on("click", ".answer", function () {
     console.log("firing")
+    $("#userScore").text(userScore)
     userChoice = $(this).text();
-
     questionChosen($(this));
+    console.log("-------" + counter)
+    if (counter < 10) {
+        nextQuestion();
+    } else {
+        console.log("counter reached");
+        $(".container").empty();
+        $("#results").css({ "display": "block", "visibility": "visible" });
+        console.log(userScore)
 
-    setTimeout(function () {
-        nextQuestion(), 1000
-    })
-    // nextQuestion()
+        // api call to send the userScore to the backend
+        $.post("/api/submit", userScore, function (data) {
+            if (data) {
+                console.log("data sent")
+            } else {
+                console.log("no data sent")
+            }
+        })
+    }
 
 });
 
-function questionChosen(ele) {
-    console.log("this is the ele" + JSON.stringify(ele))
+function questionChosen() {
     console.log(userChoice)
     if (userChoice === currentAnswer) {
         correct++;
         userScore = userScore + questionValue
-        ele.addClass("correct");
         counter++;
 
     }
     else if (userChoice !== currentAnswer) {
         wrong++;
         counter++;
-        console.log("isthisworking")
+
     }
-}
+};
+
 function showAnswers() {
     arrShuffle(answers);
     for (var i = 0; i < answers.length; i++) {

@@ -57,7 +57,7 @@ module.exports = function (app) {
       }).catch(function (err) {
         // console.log(err);
       }).then(function (data) {
-        // console.log(data);
+        console.log(data);
         var userDaily = data[0].dataValues.daily;
         var weekly = data[0].dataValues.weekly + req.body.score;
         //GOOD A user with the submitted credentials is present

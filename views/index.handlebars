@@ -50,9 +50,10 @@
     }
 </style>
 
-
+<!--
 <iframe width="0" height="0" src="https://www.youtube.com/embed/vlEN8svyHj8?controls=0?rel=0&autoplay=1" frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    -->
 <div class="logo text-center img-thumbnail">
     <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
 </div>
@@ -70,12 +71,12 @@
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="defaultForm-email" class="form-control validate">
+                        <input type="email" id="login-email" class="form-control validate">
                         <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
                     </div>
                     <div class="md-form mb-4">
                         <i class="fas fa-lock prefix grey-text"></i>
-                        <input type="password" id="defaultForm-pass" class="form-control validate">
+                        <input type="password" id="login-password" class="form-control validate">
                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
                     </div>
                 </div>
@@ -105,22 +106,22 @@
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="orangeForm-name" class="form-control validate">
+                        <input type="text" id="username-input" class="form-control validate">
                         <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
                     </div>
                     <div class="md-form mb-5">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="orangeForm-email" class="form-control validate">
+                        <input type="email" id="email-input" class="form-control validate">
                         <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
                     </div>
                     <div class="md-form mb-4">
                         <i class="fas fa-lock prefix grey-text"></i>
-                        <input type="password" id="orangeForm-pass" class="form-control validate">
+                        <input type="password" id="password-input" class="form-control validate">
                         <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <a href="/"><button class="btn btn-deep-orange">Sign up</button></a>
+                    <a href="/"><button class="btn btn-deep-orange" id="signup-button">Sign up</button></a>
                 </div>
             </div>
         </div>
