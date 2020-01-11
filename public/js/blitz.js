@@ -1,155 +1,94 @@
-// // Global Vars
-// var timeLeft = 11;
-// var counter = 0;
+var ans = $(".answer");
+var waiting = document.querySelector("#waiting");
+var loadAnim = document.querySelector("#waitanim");
+var counter = 0;
+var correct = 0;
+var wrong = 0;
+var userScore = 0;
+var userChoice = "";
+var questions = [];
+var data;
 
-// $.ajax({
-//     url: "/api/quiz",
-//     method: "GET"
-// }).then(function (questionResults) {
-//     //console.log(questionResults)
+$.ajax({
+    url: "/api/quiz",
+    method: "GET"
+}).then(function (data) {
+    console.log(data)
+    questions = data;
+    nextQuestion();
+})
+function nextQuestion() {
 
-//     console.log(questionResults[0])
+    console.log("counter top nq");
+    console.log(counter);
+    console.log(questions);
 
-//     function next() {
+    var currentObj = questions[counter];
+    currentQuestion = currentObj.question;
+    currentAnswer = currentObj.answer;
 
-//         var questionObj = questionResults[counter];
+    console.log(currentAnswer);
 
-//         var currentQuestion = questionObj.question;
-//         var currentAnswer = questionObj.answer;
-//         var answers = questionObj.falseAnswers;
+    answers = currentObj.falseAnswers;
+    questionValue = currentObj.value;
 
-//         answers.push(currentAnswer)
-//         console.log(answers)
+    emptyAnswers();
 
-//     }
-//     next();
-// });
+    $("#question").text(currentQuestion);
 
+    showAnswers();
 
-// function startTime() {
+    console.log("counter bottom nq");
+    console.log(counter);
 
-//     var timer = $("#timer");
-//     timer.text("10");
+    $("body").on("click", ".answer", function () {
+        userChoice = $(this).text();
+        questionChosen($(this));
+        nextQuestion();
+    });
+};
 
-//     function timeIt() {
-//         counter++;
-//         timer.text(timeLeft - counter);
-
-//         if (counter == timeLeft) {
-//             console.log("out of time")
-//             clearInterval();
-//             displayFinished();
-//         }
-//     }
-//     setInterval(timeIt, 1000)
-// }
-
-
-
-
-// var questions = [
-//     {
-//         question: "This is the question 1",
-//         answer: "answer",
-//         falseAnswers: ["answer", "false", "false", "false"],
-//         score: 400
-//     },
-//     {
-//         question: "This is question 2",
-//         answer: "answer2",
-//         falseAnswers: ["answer2", "false2", "false2", "false2"],
-//         score: 500
-//     },
-//     {
-//         question: "This is the question 3",
-//         answer: "answer",
-//         falseAnswers: ["answer", "false", "false", "false"],
-//         score: 400
-//     }];
-
-
-// var correct = 0;
-// var wrong = 0;
-// var counter = 0;
-// var currentQuestion = "";
-// var currentAnswer = "";
-// var userScore = 0;
-// var userChoice = "";
-// var currentAnswer = "";
-// var answers = [];
-
-
-// function arrShuffle(array) {
-
-//     // This is for shuffling the false questions chosen
-//     var currentIndex = array.length, temporaryValue, randomIndex;
-
-//     // While there remain elements to shuffle...
-//     while (0 !== currentIndex) {
-
-//         // Pick a remaining element...
-//         randomIndex = Math.floor(Math.random() * currentIndex);
-//         currentIndex -= 1;
-
-//         // And swap it with the current element.
-//         temporaryValue = array[currentIndex];
-//         array[currentIndex] = array[randomIndex];
-//         array[randomIndex] = temporaryValue;
-//     }
-//     return array;
-// };
-
-// function clearButtons() {
-//     $(".menu").empty();
-// }
-
-// function showAnswers() {
-
-//     arrShuffle(answers);
-//     for (var i = 0; i < answers.length; i++) {
-
-//         $(".menu").append("<a class='btn btn-dark button' type='button' data-answer=" + answers[i] + "><h4>" +
-//             answers[i] + "</h4></a>");
-
-//     }
-// }
-
-
-
-// function nextQuestion() {
-
-//     var currentObj = questions[counter];
-//     currentQuestion = currentObj.question;
-//     currentAnswer = currentObj.answer;
-//     answers = currentObj.falseAnswers;
-//     clearButtons();
-//     $("#question-text").text(currentQuestion);
-
-//     showAnswers();
-//     counter++;
-//     console.log(counter)
-// }
-
-// nextQuestion();
-
-// function questionChosen() {
-//     if (userChoice === currentAnswer) {
-//         correct++;
-
-//     }
-//     else if (userChoice !== currentAnswer) {
-//         wrong++;
-
-//     }
-// }
-// // This is checking which answer was chosen
-// $(".button").on("click", function () {
-//     userChoice = $(this).text();
-//     console.log(userChoice);
-//     questionChosen();
-//     nextQuestion();
-// })
-
-
+function questionChosen(ele) {
+    if (userChoice === currentAnswer) {
+        correct++;
+        userScore = userScore + questionValue;
+        console.log(userScore);
+        ele.addClass("correct");
+        counter++;
+        console.log("counter r");
+        console.log(counter);
+    }
+    else if (userChoice !== currentAnswer) {
+        wrong++;
+        console.log("counter w");
+        console.log(counter);
+        counter++;
+    }
+}
+function showAnswers() {
+    arrShuffle(answers);
+    for (var i = 0; i < answers.length; i++) {
+        $(".optnContainer").append("<p id='optn1' class='answer'>" + answers[i] + "</p>");
+    }
+}
+function emptyAnswers() {
+    $(".optnContainer").empty();
+}
+// Function that shuffles an array
+function arrShuffle(array) {
+    // This is for shuffling the false questions chosen
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
 
 
