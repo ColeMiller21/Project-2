@@ -4,6 +4,7 @@ module.exports = function (app) {
 
     // This is for a user logging in 
     app.post("/user/auth", function (req, res) {
+        console.log(req)
         var email = req.body.email;
         var password = req.body.password;
 
@@ -41,6 +42,7 @@ module.exports = function (app) {
         var email = req.body.email;
         var password = req.body.password;
 
+        console.log(req.body)
         if (email && password && username) {
             // Checking if the email is already used for an account
             db.Users.findAll({

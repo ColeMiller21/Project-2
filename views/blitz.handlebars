@@ -1,3 +1,225 @@
+<style>
+    body {
+        background-image: url("https://wpmisc.com/sites/default/files/wallpaper/abstract/66172/neon-grid-hd-wallpapers-66172-5530351.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+
+
+    .navbar {
+        background-color: transparent !important;
+
+
+    }
+
+    .img-thumbnail {
+        background: transparent !important;
+        border: 0px solid transparent;
+    }
+
+    .make-flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .twidth {
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .container {
+        background: #064453;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h2 {
+        color: #064453;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 5rem 0 3rem 0;
+        text-align: center;
+    }
+
+    #question {
+        color: #2D6E7E;
+        min-height: 66px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        padding: .5rem;
+    }
+
+    .optnContainer {
+        position: relative;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .answer {
+        color: #F2F2F2;
+        background: #153B44;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        min-height: 51px;
+        padding: 1rem;
+        letter-spacing: 2px;
+        margin-top: 3px;
+        -webkit-transition: background 300ms;
+        -o-transition: background 300ms;
+        transition: background 300ms;
+    }
+
+    .answer:hover {
+        cursor: pointer;
+    }
+
+    .incorrect {
+        background: #CF1B1B;
+    }
+
+    .correct {
+        background: #04a569;
+    }
+
+    .score {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        margin-top: 2rem;
+        margin-left: 420px;
+    }
+
+    .score p {
+        text-align: center;
+        padding: .8rem;
+        width: 50%;
+        color: white;
+        letter-spacing: 5px;
+    }
+
+    #resetscore {
+        background: #064453;
+        -webkit-transition-duration: 300ms;
+        -o-transition-duration: 300ms;
+        transition-duration: 300ms;
+    }
+
+    #resetscore:hover {
+        background: #194235;
+        cursor: pointer;
+    }
+
+    #hscore {
+        font-weight: 900;
+        background: #064453;
+        ;
+    }
+
+    #skip {
+        padding: .8rem;
+        margin-top: 3px;
+        background: #064453;
+        color: white;
+        text-align: center;
+        -webkit-transition-duration: 300ms;
+        -o-transition-duration: 300ms;
+        transition-duration: 300ms;
+        margin-left: 420px;
+    }
+
+    #skip:hover {
+        background: #194235;
+        cursor: pointer;
+    }
+
+    small {
+        margin: 3rem 0 5rem 0;
+        font-size: 12px;
+        font-weight: 900;
+        color: #232323;
+    }
+
+    .loading {
+        position: absolute;
+        background: white;
+        opacity: .3;
+        height: 100%;
+        width: 100%;
+        z-index: 99;
+    }
+
+    @-webkit-keyframes loadingicon {
+        from {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes loadingicon {
+        from {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    .animation {
+        position: absolute;
+        top: 41%;
+        left: 46%;
+        width: 40px;
+        height: 40px;
+        opacity: 1;
+        border-top: 5px solid #232323;
+        border-bottom: 5px solid #232323;
+        border-right: 5px solid rgba(255, 255, 255, 0);
+        border-left: 5px solid rgba(255, 255, 255, 0);
+        border-radius: 50%;
+        z-index: 100;
+        -webkit-animation-name: loadingicon;
+        animation-name: loadingicon;
+        -webkit-animation-duration: 400ms;
+        animation-duration: 400ms;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -webkit-animation-delay: 0;
+        animation-delay: 0;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }
+</style>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="d-flex w-50 order-0">
         <a class="navbar-brand mr-1"></a>
@@ -15,14 +237,12 @@
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup"> Username: </label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="displayName-input"
                                     aria-describedby="basic-addon3" placeholder="Display Username">
                             </div>
-
                             <label for="basic-url" id="email-signup">Email: </label>
                             <div class="input-group mb-3">
                                 <input type="email" class="form-control" id="email-input"
@@ -34,8 +254,6 @@
                                 <input type="password" class="form-control" id="pw-input"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
-
-
                             <div id="buttons">
                                 <button type="button" class="btn btn-primary signup-button" id="signup-button"
                                     data-dismiss="modal">Sign
@@ -89,28 +307,108 @@
                 <a class="nav-link" href="#" id="faq-button" data-toggle="modal"
                     data-target=".bd-example-modal-lg-faq">FAQ</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#" id="faq-button" data-toggle="modal"
-                    data-target=".bd-example-modal-lg-faq">Homepage</a>
-            </li>
         </ul>
     </div>
 </nav>
 <div>
 
     <body>
-        <div class="logo">
-            <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
+        <div class="logo text-center img-thumbnail">
+            <img src="https://fontmeme.com/permalink/200111/bacd36bc684cf0b846b598897dd552c6.png">
         </div>
-
-        <div class="menu">
-            <div class="btn-group">
-                <button class="button" type="button">
-                    <h2>10 Question Blitz</h2>
-                </button>
+        <class="make-flex">
+            <h2> </h2>
+            <div class="container twidth make-flex">
+                <p id="question"></p>
+                <div class="optnContainer make-flex">
+                    <p id="optn1" class="answer"></p>
+                    <p id="optn2" class="answer"></p>
+                    <p id="optn3" class="answer"></p>
+                    <p id="optn4" class="answer"></p>
+                    <div id="waiting"></div>
+                    <div id="waitanim"></div>
+                </div>
             </div>
-        </div>
+            <div class="score twidth make-flex">
+                <p id="hscore">0</p>
+                <p id="resetscore">Scoreboard </p>
+            </div>
+            <p id="skip" class="twidth">Skip Question</p>
     </body>
-
+    <script>
+        var ans = document.querySelectorAll(".answer");
+        var resetScore = document.querySelector("#resetscore");
+        var skipQues = document.querySelector("#skip");
+        var waiting = document.querySelector("#waiting");
+        var loadAnim = document.querySelector("#waitanim");
+        var curScore = 0;
+        var data;
+        function randIndex() {
+            return Math.floor(Math.random() * 4);
+        }
+        function fetchReq() {
+            loading(true);
+            /*put the axios link underneath*/
+            axios("https://opentdb.com/api.php?amount=1&type=multiple")
+                .then(updateQues)
+        }
+        function updateQues(response) {
+            data = response.data.results[0];
+            document.querySelector("#question").innerHTML = data.question;
+            var options = data.incorrect_answers;
+            options.splice(randIndex(), 0, data.correct_answer);
+            document.querySelector("#optn1").innerHTML = options[0];
+            document.querySelector("#optn2").innerHTML = options[1];
+            document.querySelector("#optn3").innerHTML = options[2];
+            document.querySelector("#optn4").innerHTML = options[3];
+            loading(false);
+        }
+        for (var i = 0; i < ans.length; i++) {
+            ans[i].addEventListener("click", function () {
+                checkAnswer(this);
+            });
+        }
+        function checkAnswer(ele) {
+            if (ele.innerHTML === data.correct_answer) {
+                ele.classList.add("correct");
+                loading(true);
+                document.querySelector("#hscore").innerHTML = ++curScore;
+                changeQues();
+            } else {
+                ele.classList.add("incorrect");
+                loading(true);
+                document.querySelector("#hscore").innerHTML = --curScore;
+                changeQues();
+            }
+        }
+        function changeQues() {
+            setTimeout(function () {
+                for (var j = 0; j < ans.length; j++) {
+                    ans[j].classList.remove("incorrect")
+                    ans[j].classList.remove("correct")
+                }
+                fetchReq();
+            }, 800)
+        }
+        function loading(fire) {
+            if (fire) {
+                waiting.classList.add("loading");
+                loadAnim.classList.add("animation");
+            } else {
+                waiting.classList.remove("loading");
+                loadAnim.classList.remove("animation");
+            }
+        }
+        resetScore.addEventListener("click", function (argument) {
+            curScore = 0;
+            document.querySelector("#hscore").innerHTML = curScore;
+        });
+        skipQues.addEventListener("click", function () {
+            loading(true);
+            fetchReq();
+        })
+        fetchReq();
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </div>
 </div>

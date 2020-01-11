@@ -27,8 +27,8 @@ $("#signup-button").on("click", function () {
 
   console.log(newUser)
 
-  //sending new user to loginRoutes
-  $.ajax("user/signup", {
+  // sending new user to loginRoutes
+  $.ajax("/user/signup", {
     type: "POST",
     data: newUser
   }).then(function () {
@@ -38,14 +38,14 @@ $("#signup-button").on("click", function () {
 });
 
 $("#login-button").on("click", function () {
-  var email = $("#login-email");
-  var password = $("#login-password");
+  var email = $("#login-email").val().trim();
+  var password = $("#login-password").val().trim();
 
   //creating an object for the login to check if it is a valid login
   if (password.length >= 6 && validateEmailAddress(email) === 1) {
     var loginUser = {
-      email: email.val().trim(),
-      password: password.val().trim()
+      email: email,
+      password: password
     };
   } else {
     console.log("error with login")
@@ -53,7 +53,7 @@ $("#login-button").on("click", function () {
   console.log(loginUser)
 
   //sending loginUser to loginRoutes
-  $.ajax("user/auth", {
+  $.ajax("/user/auth", {
     type: "POST",
     data: loginUser
   }).then(function () {

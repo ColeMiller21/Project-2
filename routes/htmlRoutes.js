@@ -9,26 +9,22 @@ module.exports = function (app) {
 
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-    if (req.session.loggedin) {
 
-    } else {
-      res.render("index");
-    }
-
-  });
   // blitzhandlebars
-  app.get("/blitz/:id", function (req, res) {
 
+  app.get("/home", function (req, res) {
+    res.render("home")
+  })
+  app.get("/blitz", function (req, res) {
+    res.render("blitz")
   });
   // dailyhandlebars
-  app.get("/daily/", function (req, res) {
+  app.get("/daily", function (req, res) {
     res.render("daily");
   });
   // weeklyhandlebars
-  app.get("/weekly/:id", function (req, res) {
-
+  app.get("/weekly", function (req, res) {
+    res.render("weekly")
   });
 
   // Render 404 page for any unmatched routes

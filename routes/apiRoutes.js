@@ -10,17 +10,23 @@ questions().then(function (results) {
   userQuizDaily = results.userQuiz;
 });
 
-module.exports = function (app) {
+allQuestions = results;
 
-  // Get all examples
-  app.get("/api/quiz", function (req, res) {
-    res.json(userQuizDaily);
-  });
+// Get all examples
+app.get("/api/quiz", function (req, res) {
+  res.json(userQuizDaily);
+});
 
-  // User score create...
-  app.post("/api/user", function (req, res) {
+app.get("/api/examples", function (req, res) {
+  res.json(allQuestions)
+})
+// User score create...
+app.post("/api/user", function (req, res) {
 
-  });
+});
+
+
+
 
 };
 

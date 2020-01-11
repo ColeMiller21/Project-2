@@ -6,15 +6,92 @@
         background-size: 100% 100%;
     }
 
+
+
     .navbar {
         background-color: transparent !important;
 
 
     }
 
-    .img-thumbnail {
+    .container {
+        margin: 0 auto;
+        text-align: center;
+        height: 100vh;
+        width: 100vw;
+
+    }
+
+    .header {
+        font-size: 50px;
+        margin-top: 75px;
+        margin-bottom: 150px;
+
+    }
+
+    #buttons {
+        width: 80vw;
+        margin-top: 35%;
+        margin: 0 auto;
+    }
+
+
+    .button {
+        color: white !important;
+        border: 3px solid white;
+        border-radius: 0px;
+        width: 70vw;
+        height: 75px;
+        color: rgb(48, 45, 45);
+        margin: 10px;
         background: transparent !important;
-        border: 0px solid transparent;
+        font-size: 14px;
+        border-radius: 5px;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @-webkit-keyframes glow {
+        from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(44, 231, 231), 0 0 40px rgb(12, 3, 90), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(12, 3, 90), 0 0 70px rgb(12, 3, 90);
+        }
+
+        to {
+            text-shadow: 0 0 10px white, 0 0 20px #fff, 0 0 30px #064453, 0 0 40px rgb(4, 4, 97), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(4, 4, 97), 0 0 70px rgb(4, 4, 97);
+        }
+    }
+
+
+
+    @media (min-width: 600px) {
+
+        .button {
+            width: 55vw;
+
+        }
+
+    }
+
+    @media (min-width: 900px) {
+
+        .header {
+            margin-bottom: 250px;
+        }
+
+        .button {
+            width: 23vw;
+            height: 200px;
+
+        }
+
+        #blitz-text {
+            padding: 60px 0px;
+        }
+
+        h2 {
+            padding: 50px 0px;
+        }
     }
 </style>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
@@ -34,12 +111,14 @@
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
+
                         <div id="signup-page" class="modal-page">
                             <label for="basic-url" id="email-signup"> Username: </label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="username-input"
                                     aria-describedby="basic-addon3" placeholder="Display Username">
                             </div>
+
                             <label for="basic-url" id="email-signup">Email: </label>
                             <div class="input-group mb-3">
                                 <input type="email" class="form-control" id="email-input"
@@ -51,6 +130,8 @@
                                 <input type="password" class="form-control" id="password-input"
                                     aria-describedby="basic-addon3" placeholder="Password">
                             </div>
+
+
                             <div id="buttons">
                                 <button type="button" class="btn btn-primary signup-button" id="signup-button"
                                     data-dismiss="modal">Sign
@@ -104,40 +185,32 @@
                 <a class="nav-link" href="#" id="faq-button" data-toggle="modal"
                     data-target=".bd-example-modal-lg-faq">FAQ</a>
             </li>
+
         </ul>
     </div>
 </nav>
 <div>
+    <div class="header text-center">
+        <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
+    </div>
 
-    <body>
-        <div class="logo text-center img-thumbnail">
-            <img src="https://fontmeme.com/permalink/200111/b067326b9386d07b69cd2d261c62ecb1.png">
+    <div class="menu text-center">
+        <div class="text-center" id="buttons">
+
+            <a href="blitz" class="btn btn-dark button" type="button">
+                <h2 id="blitz-text">10 Question Blitz</h2>
+
+            </a>
+            <a href="daily" class="btn btn-dark button" type="button">
+                <h2> Daily Leaderboard</h2>
+
+            </a>
+            <a href="weekly" class="btn btn-dark button" type="button">
+                <h2> Weekly Leaderboard</h2>
+
+            </a>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>384</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>500</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>3409</td>
-                </tr>
-            </tbody>
-        </table>
+    </div>
+
 </div>
 </div>
