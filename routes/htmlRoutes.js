@@ -1,30 +1,46 @@
 var db = require("../models");
 
+// Function that accepts a function and a bool to see if the user is logged in
+function checkLogInRedirect(res, logged, cb) {
+  if (1 === 1) {
+    return cb();
+  } else {
+    return res.redirect("/");
+  }
 
+}
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    console.log(req.session.loggedin);
     res.render("index");
-
   });
-
-
-  // blitzhandlebars
 
   app.get("/home", function (req, res) {
-    res.render("home")
-  })
+    checkLogInRedirect(res, req.session.loggedIn, function () {
+      res.render("home");
+    });
+
+  });
+
+  // Blitz
   app.get("/blitz", function (req, res) {
-    res.render("blitz")
+    checkLogInRedirect(res, req.session.loggedIn, function () {
+      res.render("blitz");
+    });
   });
-  // dailyhandlebars
+
+  // Daily
   app.get("/daily", function (req, res) {
-    res.render("daily");
+    checkLogInRedirect(res, req.session.loggedIn, function () {
+      res.render("daily");
+    });
   });
-  // weeklyhandlebars
+
+  // Weekly
   app.get("/weekly", function (req, res) {
-    res.render("weekly")
+    checkLogInRedirect(res, req.session.loggedIn, function () {
+      res.render("weekly");
+    });
   });
 
   // Render 404 page for any unmatched routes
