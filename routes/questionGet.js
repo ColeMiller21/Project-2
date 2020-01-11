@@ -11,7 +11,8 @@ async function createQuestions() {
         var currentQuestion = await getQuestion();
         triviaQuestions.push(currentQuestion);
     }
-    return triviaQuestions();
+    await removeFiller();
+    return triviaQuestions;
 }
 
 
@@ -77,7 +78,6 @@ async function getQuestion() {
     });
 };
 
-////////NEEDS WORK//////////
 // Function to replace all html tags and // in the answers and questions
 async function removeFiller() {
     for (var i = 0; i < triviaQuestions.length; i++) {
@@ -86,9 +86,11 @@ async function removeFiller() {
         var currentQuestion = triviaQuestions[i].question;
         var currentAnswer = triviaQuestions[i].answer;
         // Replacing the unnecessary filler
-        triviaQuestions[i].question = currentQuestion.replace(/<[^>]*>/g, "");
+        currentQuestion = currentQuestion.replace(/<[^>]*>/g, "");
+        currentQuestion = currentQuestion.replace(/\\/g, "");
         triviaQuestions[i].question = currentQuestion.replace(/\/\//g, "");
-        triviaQuestions[i].answer = currentAnswer.replace(/<[^>]*>/g, "");
+        currentAnswer = currentAnswer.replace(/<[^>]*>/g, "");
+        currentAnswer = currentAnswer.replace(/\\/g, "");
         triviaQuestions[i].answer = currentAnswer.replace(/\/\//g, "");
 
         for (var j = 0; j < triviaQuestions[i].falseAnswers.length; j++) {
@@ -96,10 +98,12 @@ async function removeFiller() {
             var currentFalseAnswer = triviaQuestions[i].falseAnswers[j];
 
             // Replacing the unnecessary filler
-            triviaQuestions[i].falseAnswers[j] = currentFalseAnswer.replace(/<[^>]*>/g, "");
+            currentFalseAnswer = currentFalseAnswer.replace(/<[^>]*>/g, "");
+            currentFalseAnswer = currentFalseAnswer.replace(/\\/g, "");
             triviaQuestions[i].falseAnswers[j] = currentFalseAnswer.replace(/\/\//g, "");
         }
     }
+    return;
 
 
 }
@@ -135,3 +139,5 @@ function arrShuffle(array) {
 }
 
 module.exports = createQuestions;
+
+// removeFiller();

@@ -4,13 +4,18 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    console.log(req.session);
-
+    console.log(req.session.loggedin);
+    res.render("index");
 
   });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function (req, res) {
+    if (req.session.loggedin) {
+
+    } else {
+      res.render("index");
+    }
 
   });
   // blitzhandlebars
@@ -18,8 +23,8 @@ module.exports = function (app) {
 
   });
   // dailyhandlebars
-  app.get("/daily/:id", function (req, res) {
-
+  app.get("/daily/", function (req, res) {
+    res.render("daily");
   });
   // weeklyhandlebars
   app.get("/weekly/:id", function (req, res) {
