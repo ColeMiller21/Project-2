@@ -1,109 +1,101 @@
-var ans = document.querySelectorAll(".answer");
-var resetScore = document.querySelector("#resetscore");
-var skipQues = document.querySelector("#skip");
+var ans = $(".answer");
 var waiting = document.querySelector("#waiting");
 var loadAnim = document.querySelector("#waitanim");
-var curScore = 0;
 var counter = 0;
+var correct = 0;
+var wrong = 0;
+var userScore = 0;
+var userChoice = "";
+var questions = [];
+
 var data;
-function randIndex() {
-    return Math.floor(Math.random() * 4);
-}
+
+
+
+$.ajax({
+    url: "/api/quiz",
+    method: "GET"
+}).then(function (data) {
+    console.log(data)
+    questions = data;
+    nextQuestion();
+})
+
+
 function nextQuestion() {
-    loading(false);
+    console.log(questions)
+    var currentObj = questions[counter];
+    currentQuestion = currentObj.question;
+    currentAnswer = currentObj.answer;
+    console.log(currentAnswer)
+    answers = currentObj.falseAnswers;
+    questionValue = currentObj.value;
+    emptyAnswers();
+    $("#question").text(currentQuestion);
+    showAnswers();
 
-    $.ajax({
-        url: "/api/quiz",
-        method: "GET"
-    }).then(function (questions) {
-        console.log(questions)
+    console.log(counter)
 
-        var currentObj = questions[counter];
-        currentQuestion = currentObj.question;
-        console.log(currentQuestion)
-        currentAnswer = currentObj.answer;
-        answers = currentObj.falseAnswers;
-
-        $("#question").text(currentQuestion);
-
-        showAnswers();
-        counter++;
-        console.log(counter)
-    })
 };
+
+$("body").on("click", ".answer", function () {
+    console.log("firing")
+    userChoice = $(this).text();
+
+    questionChosen($(this));
+
+    setTimeout(function () {
+        nextQuestion(), 1000
+    })
+    // nextQuestion()
+
+});
+
+function questionChosen(ele) {
+    console.log("this is the ele" + JSON.stringify(ele))
+    console.log(userChoice)
+    if (userChoice === currentAnswer) {
+        correct++;
+        userScore = userScore + questionValue
+        ele.addClass("correct");
+        counter++;
+
+    }
+    else if (userChoice !== currentAnswer) {
+        wrong++;
+        counter++;
+        console.log("isthisworking")
+    }
+}
 function showAnswers() {
-
-    //arrShuffle(answers);
+    arrShuffle(answers);
     for (var i = 0; i < answers.length; i++) {
-
         $(".optnContainer").append("<p id='optn1' class='answer'>" + answers[i] + "</p>");
 
     }
 }
 
-
-nextQuestion();
-
-
-
-
-/// other javascript
-function updateQues(response) {
-    data = response.data.results[0];
-    document.querySelector("#question").innerHTML = data.question;
-    var options = data.incorrect_answers;
-    options.splice(randIndex(), 0, data.correct_answer);
-    document.querySelector("#optn1").innerHTML = options[0];
-    document.querySelector("#optn2").innerHTML = options[1];
-    document.querySelector("#optn3").innerHTML = options[2];
-    document.querySelector("#optn4").innerHTML = options[3];
-    loading(false);
+function emptyAnswers() {
+    $(".optnContainer").empty();
 }
-for (var i = 0; i < ans.length; i++) {
-    ans[i].addEventListener("click", function () {
-        checkAnswer(this);
-    });
-};
 
-function checkAnswer(ele) {
-    if (ele.innerHTML === data.correct_answer) {
-        ele.classList.add("correct");
-        loading(true);
-        document.querySelector("#hscore").innerHTML = ++curScore;
-        changeQues();
-    } else {
-        ele.classList.add("incorrect");
-        loading(true);
-        document.querySelector("#hscore").innerHTML = --curScore;
-        changeQues();
+// Function that shuffles an array
+function arrShuffle(array) {
+
+    // This is for shuffling the false questions chosen
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
+    return array;
 }
-function changeQues() {
-    setTimeout(function () {
-        for (var j = 0; j < ans.length; j++) {
-            ans[j].classList.remove("incorrect")
-            ans[j].classList.remove("correct")
-        }
-        fetchReq();
-    }, 800)
-}
-function loading(fire) {
-    if (fire) {
-        waiting.classList.add("loading");
-        loadAnim.classList.add("animation");
-    } else {
-        waiting.classList.remove("loading");
-        loadAnim.classList.remove("animation");
-    }
-}
-resetScore.addEventListener("click", function (argument) {
-    curScore = 0;
-    document.querySelector("#hscore").innerHTML = curScore;
-});
-skipQues.addEventListener("click", function () {
-    loading(true);
-    skipQues.css({ "display": "none" })
-
-})
-
-
