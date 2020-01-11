@@ -1,122 +1,112 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <div class="d-flex w-50 order-0">
-        <a class="navbar-brand mr-1"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#" id="signup-link" data-toggle="modal"
-                    data-target=".bd-example-modal-lg-signup">Sign Up</a>
-            </li>
-            <div class="modal fade bd-example-modal-lg-signup" tabindex="-1" role="dialog"
-                aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
+<style>
+    body {
+        background-image: url("https://cdn.dribbble.com/users/981298/screenshots/3816217/hexagon.gif");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
 
-                        <div id="signup-page" class="modal-page">
-                            <label for="basic-url" id="email-signup"> Username: </label>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="username-input"
-                                    aria-describedby="basic-addon3" placeholder="Display Username">
-                            </div>
+    .containerlogin {
+        margin-top: 162px;
+        color: white;
+    }
 
-                            <label for="basic-url" id="email-signup">Email: </label>
-                            <div class="input-group mb-3">
-                                <input type="email" class="form-control" id="email-input"
-                                    aria-describedby="basic-addon3" placeholder="user@email.com">
-                            </div>
-                            <label for="basic-url" id="pw-signup">Password (must be at least 6 characters):
-                            </label>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="password-input"
-                                    aria-describedby="basic-addon3" placeholder="Password">
-                            </div>
+    .modal-content {
+        background-color: #064453;
+    }
+
+    .containersignup {
+        color: white;
+    }
+
+    .btn {
+        color: white;
+        background-color: transparent;
+        border: 3px double #FFFFFF;
+        border-radius: 5px;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
+    }
+</style>
 
 
-                            <div id="buttons">
-                                <button type="button" class="btn btn-primary signup-button" id="signup-button"
-                                    data-dismiss="modal">Sign
-                                    Up</button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <li class="nav-item active">
-                <a class="nav-link" href="#" id="login-link" data-toggle="modal"
-                    data-target=".bd-example-modal-lg-login">Log in</a>
-            </li>
-            <div class="modal fade bd-example-modal-lg-login" tabindex="-1" role="dialog"
-                aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div id="signup-page" class="modal-page">
-                            <label for="basic-url" id="email-signup">Email: </label>
-                            <div class="input-group mb-3">
-                                <input type="email" class="form-control" id="login-email"
-                                    aria-describedby="basic-addon3" placeholder="User@email.com">
-                            </div>
-                            <label for="basic-url" id="pw-signup">Password:
-                            </label>
-                            <div class="input-group mb-3">
-                                <input type="password" class="form-control" id="login-password"
-                                    aria-describedby="basic-addon3" placeholder="Password">
-                            </div>
-                            <div id="buttons">
-                                <button type="button" class="btn btn-primary login-button" id="login-button"
-                                    data-dismiss="modal">Log In</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span id="dropdown-text"></span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" id="preferences-button" data-toggle="modal"
-                        data-target="#accountModalCenter">Account</a>
-                    <a class="dropdown-item" href="#" id="logout-button">Log Out</a>
-                </div>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#" id="faq-button" data-toggle="modal"
-                    data-target=".bd-example-modal-lg-faq">FAQ</a>
-            </li>
-
-        </ul>
-    </div>
-</nav>
-<div>
-
-    <body>
-        <div class="logo">
-            <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
-        </div>
-
-        <div class="menu">
-            <div class="btn-group">
-
-                <a href="blitz.handlebars"> <button class="button" type="button">
-                        <h2>10 Question Blitz</h2>
-                    </button>
-                </a>
-                <a href="daily.handlebars"> <button class="button" type="button">
-                        <h2> Daily Challenges</h2>
-                    </button>
-                </a>
-                <a href="weekly.handlebars"> <button class="button" type="button">
-                        <h2> Weekly Challenges</h2>
-                    </button>
-                </a>
-            </div>
-        </div>
-
+<iframe width="0" height="0" src="https://www.youtube.com/embed/vlEN8svyHj8?controls=0?rel=0&autoplay=1" frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="logo">
+    <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
 </div>
+<div class="containerlogin">
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Log-in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="defaultForm-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <a href="index"><button class="btn btn-default">Login</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="index" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm"
+            style="font-size: larger;">Log-In
+        </a>
+    </div>
+</div>
+<div class="containersignup">
+    <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="orangeForm-name" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+                    </div>
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="orangeForm-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="orangeForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <a href="/views/index"><button class="btn btn-deep-orange">Sign up</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm"
+            style="font-size: larger;">Sign-Up</a>
+    </div>
 </div>

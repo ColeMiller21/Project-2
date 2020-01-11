@@ -3,10 +3,12 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
 
+
 var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+// var router = express.Router();
 
 // Cron
 var cron = require('node-cron');
@@ -22,6 +24,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+
 
 // Handlebars
 app.engine(

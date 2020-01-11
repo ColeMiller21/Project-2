@@ -3,20 +3,25 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
+    if (req.session) {
+
+    }
+    console.log(req.session.loggedin)
     res.render("index");
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
 
-  });
   // blitzhandlebars
-  app.get("/blitz/:id", function (req, res) {
 
+  app.get("/home", function (req, res) {
+    res.render("home")
+  })
+  app.get("/blitz", function (req, res) {
+    res.render("blitz")
   });
   // dailyhandlebars
-  app.get("/daily/:id", function (req, res) {
-
+  app.get("/daily", function (req, res) {
+    res.render("daily");
   });
   // weeklyhandlebars
   app.get("/weekly/:id", function (req, res) {
