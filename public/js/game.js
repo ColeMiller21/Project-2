@@ -91,13 +91,13 @@ function emptyAnswers() {
     $(".optnContainer").empty();
 }
 
-// IF THIS IS HERE WE ARE ALL GOOD
+
 
 function displayResults() {
     var resultsDiv = $(".resultContainer");
     $("#finalScore").text(userScore);
-    resultsDiv.css({ "visibility": "visible" })
-    $(".questionContainer").css({ "display": "none" })
+    resultsDiv.show();
+    $(".questionContainer").hide()
 }
 
 // Function that shuffles an array

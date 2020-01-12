@@ -23,6 +23,7 @@ $("#signup-button").on("click", function (event) {
       password: password
     }
     console.log("sign up successfull")
+    //sending the user back to index screen
     window.location.href = "/";
     $("#signup-button").attr("href", "../views/index")
   } else {
@@ -56,6 +57,7 @@ $("#login-button").on("click", function (event) {
       password: password
     };
     console.log("Log in successful");
+    //sending user to home after log in successful
     window.location.href = "/home";
   } else {
     console.log("error with login");
