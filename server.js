@@ -33,11 +33,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Running the new quiz grab and score reset every 24h at midnight
-cron.schedule('0 0 * * *', () => {
-  // This is where the functions to do the actions described above wil be placed
-});
-
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
@@ -51,6 +46,13 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
+// This is a function to reset the scores after a week
+cron.schedule('0 0 * * SUN', () => {
+  db.Users.update({ weekly: 0 }).then(function (data) {
+    console.log(data);
+  });
+});
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {

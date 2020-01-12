@@ -3,7 +3,7 @@ var db = require("../models");
 
 // Function that accepts a function and a bool to see if the user is logged in
 function checkLogInRedirect(res, logged, cb) {
-  if (1 === 1) {
+  if (logged) {
     return cb();
   } else {
     return res.redirect("/");
