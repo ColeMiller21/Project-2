@@ -8,7 +8,8 @@ function validateEmailAddress(input) {
   }
 };
 
-$("#signup-button").on("click", function () {
+$("#signup-button").on("click", function (event) {
+  event.preventDefault();
   var username = $("#username-input").val();
   var email = $("#email-input").val();
   var password = $("#password-input").val();
@@ -21,8 +22,12 @@ $("#signup-button").on("click", function () {
       email: email,
       password: password
     }
+    console.log("sign up successfull")
+    window.location.href = "/";
+    $("#signup-button").attr("href", "../views/index")
   } else {
-    console.log("error with signup")
+    console.log("error with signup");
+    $("#loginerror").css({ "display": "block" });
   }
 
   console.log(newUser)
@@ -31,13 +36,16 @@ $("#signup-button").on("click", function () {
   $.ajax("/user/signup", {
     type: "POST",
     data: newUser
-  }).then(function () {
+  }).then(function (data) {
     console.log("User Created")
+
 
   })
 });
 
-$("#login-button").on("click", function () {
+$("#login-button").on("click", function (event) {
+  event.preventDefault();
+  console.log("clicked")
   var email = $("#login-email").val().trim();
   var password = $("#login-password").val().trim();
 
@@ -47,8 +55,10 @@ $("#login-button").on("click", function () {
       email: email,
       password: password
     };
+    console.log("Log in successful");
+    window.location.href = "/home";
   } else {
-    console.log("error with login")
+    console.log("error with login");
   };
   console.log(loginUser)
 

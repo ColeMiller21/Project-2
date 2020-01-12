@@ -12,7 +12,6 @@
     }
 
     .containerlogin {
-        margin-top: 162px;
         color: white;
     }
 
@@ -22,6 +21,7 @@
 
     .containersignup {
         color: white;
+        margin-top: 162px;
     }
 
     .btn {
@@ -48,6 +48,11 @@
             text-shadow: 0 0 10px white, 0 0 20px #fff, 0 0 30px #064453, 0 0 40px rgb(4, 4, 97), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(4, 4, 97), 0 0 70px rgb(4, 4, 97);
         }
     }
+
+    #loginerror {
+        display: none;
+        color: red;
+    }
 </style>
 
 <!--
@@ -57,41 +62,7 @@
 <div class="logo text-center img-thumbnail">
     <img src="https://fontmeme.com/permalink/200109/3f7cebc5db01fb545ce6704286038e6f.png">
 </div>
-<div class="containerlogin">
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Log-in</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body mx-3">
-                    <div class="md-form mb-5">
-                        <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="login-email" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                    </div>
-                    <div class="md-form mb-4">
-                        <i class="fas fa-lock prefix grey-text"></i>
-                        <input type="password" id="login-password" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <a href="home"><button class="btn btn-default">Login</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center">
-        <a href="index" class="btn btn-default btn-rounded mb-4 modal-btn" data-toggle="modal"
-            data-target="#modalLoginForm" style="font-size: larger;">Log-In
-        </a>
-    </div>
-</div>
+
 <div class="containersignup">
     <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
@@ -120,8 +91,10 @@
                         <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
                     </div>
                 </div>
+                <p class="text-center" id="loginerror">There is an error signing you in make sure everything is correct
+                </p>
                 <div class="modal-footer d-flex justify-content-center">
-                    <a href="/"><button class="btn btn-deep-orange" id="signup-button">Sign up</button></a>
+                    <button class="btn btn-deep-orange" id="signup-button">Sign up</button>
                 </div>
             </div>
         </div>
@@ -129,5 +102,40 @@
     <div class="text-center">
         <a href="index" class="btn btn-default btn-rounded mb-4 modal-btn" data-toggle="modal"
             data-target="#modalRegisterForm" style="font-size: larger;">Sign-Up</a>
+    </div>
+</div>
+<div class="containerlogin">
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Log-in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="login-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="login-password" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button id="login-button" class="btn btn-default">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="index" class="btn btn-default btn-rounded mb-4 modal-btn" data-toggle="modal"
+            data-target="#modalLoginForm" style="font-size: larger;">Log-In
+        </a>
     </div>
 </div>

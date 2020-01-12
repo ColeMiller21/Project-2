@@ -22,7 +22,6 @@ $.ajax({
 
 
 function nextQuestion() {
-    console.log(questions)
     var currentObj = questions[counter];
     currentQuestion = currentObj.question;
     currentAnswer = currentObj.answer;
@@ -31,6 +30,10 @@ function nextQuestion() {
     questionValue = currentObj.value;
     emptyAnswers();
     $("#question").text(currentQuestion);
+    if (questionValue === null) {
+        questionValue = 100;
+    }
+    $("#scoreValue").text(questionValue);
     showAnswers();
     $("#userScore").text(userScore)
 
@@ -46,10 +49,9 @@ $("body").on("click", ".answer", function () {
         nextQuestion();
     } else {
         console.log("counter reached");
-        $(".container").empty();
         $("#results").css({ "display": "block", "visibility": "visible" });
         console.log(userScore)
-
+        displayResults();
         // api call to send the userScore to the backend
         $.post("/api/submit", userScore, function (data) {
             if (data) {
@@ -87,6 +89,15 @@ function showAnswers() {
 
 function emptyAnswers() {
     $(".optnContainer").empty();
+}
+
+// IF THIS IS HERE WE ARE ALL GOOD
+
+function displayResults() {
+    var resultsDiv = $(".resultContainer");
+    $("#finalScore").text(userScore);
+    resultsDiv.css({ "visibility": "visible" })
+    $(".questionContainer").css({ "display": "none" })
 }
 
 // Function that shuffles an array

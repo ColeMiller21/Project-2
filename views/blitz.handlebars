@@ -6,12 +6,8 @@
         background-size: 100% 100%;
     }
 
-
-
     .navbar {
         background-color: transparent !important;
-
-
     }
 
     .img-thumbnail {
@@ -66,6 +62,7 @@
         padding: .5rem;
     }
 
+
     .currentScore {
         color: white;
         min-height: 66px;
@@ -104,134 +101,80 @@
         cursor: pointer;
     }
 
-    .incorrect {
-        background: #CF1B1B;
-    }
-
-    .correct {
-        background: #04a569;
-    }
-
-    .score {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        margin-top: 2rem;
-        margin-left: 420px;
-    }
-
-    .score p {
-        text-align: center;
-        padding: .8rem;
-        width: 50%;
-        color: white;
-        letter-spacing: 5px;
-    }
-
     .logo {
         margin-top: 75px;
     }
 
-    small {
-        margin: 3rem 0 5rem 0;
-        font-size: 12px;
-        font-weight: 900;
-        color: #232323;
+    .btn {
+        color: white !important;
+        border: 3px solid white;
+        border-radius: 0px;
+        width: 150px;
+        color: rgb(48, 45, 45);
+        margin: 10px;
+        background: transparent !important;
+        font-size: 14px;
+        border-radius: 5px;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
     }
 
-    .loading {
-        position: absolute;
-        background: white;
-        opacity: .3;
-        height: 100%;
-        width: 100%;
-        z-index: 99;
-    }
-
-    @-webkit-keyframes loadingicon {
+    @-webkit-keyframes glow {
         from {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(44, 231, 231), 0 0 40px rgb(12, 3, 90), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(12, 3, 90), 0 0 70px rgb(12, 3, 90);
         }
 
         to {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+            text-shadow: 0 0 10px white, 0 0 20px #fff, 0 0 30px #064453, 0 0 40px rgb(4, 4, 97), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(4, 4, 97), 0 0 70px rgb(4, 4, 97);
         }
-    }
-
-    @keyframes loadingicon {
-        from {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        to {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
-
-    .animation {
-        position: absolute;
-        top: 41%;
-        left: 46%;
-        width: 40px;
-        height: 40px;
-        opacity: 1;
-        border-top: 5px solid #232323;
-        border-bottom: 5px solid #232323;
-        border-right: 5px solid rgba(255, 255, 255, 0);
-        border-left: 5px solid rgba(255, 255, 255, 0);
-        border-radius: 50%;
-        z-index: 100;
-        -webkit-animation-name: loadingicon;
-        animation-name: loadingicon;
-        -webkit-animation-duration: 400ms;
-        animation-duration: 400ms;
-        -webkit-animation-timing-function: linear;
-        animation-timing-function: linear;
-        -webkit-animation-delay: 0;
-        animation-delay: 0;
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
     }
 
     #results {
         display: none;
         visibility: hidden;
     }
+
+    .resultContainer {}
 </style>
 
 <div>
 
-    <body>
+
+    <!--
         <iframe width="0" height="0" src="https://www.youtube.com/embed/vlEN8svyHj8?controls=0?rel=0&autoplay=1"
             frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
-        <div class="logo text-center img-thumbnail">
-            <img src="https://fontmeme.com/permalink/200111/bacd36bc684cf0b846b598897dd552c6.png">
-        </div>
-        <class="make-flex">
-            <h2> </h2>
-            <div class="container twidth make-flex">
-                <p id="question"></p>
-                <div id="results">
-                    <h1>Your Score - <span id="score"></span></h1>
+            -->
+    <div class="logo text-center img-thumbnail">
+        <img src="https://fontmeme.com/permalink/200111/bacd36bc684cf0b846b598897dd552c6.png">
+    </div>
+    <class="make-flex">
+        <h2> </h2>
+        <div class="container twidth make-flex questionContainer">
+            <p id="question"></p>
+            <p class="currentScore">Question Value - <span class="currentScore" id="scoreValue"></span> </p>
+            <div id="results">
+                <h1>Your Score - <span id="score"></span></h1>
 
-                </div>
-                <div class="optnContainer make-flex">
-
-                </div>
-                <p class="currentScore">Current Score - <span class="currentScore" id="userScore"></span></p>
             </div>
+            <div class="optnContainer make-flex">
 
+            </div>
+            <p class="currentScore">Current Score - <span class="currentScore" id="userScore"></span></p>
+        </div>
+        <div class="container twidth make-flex resultContainer">
+            <p class="currentScore text-center">Congratulations here is your score</p>
+            <p class="currentScore text-center" id="finalScore"></p>
+            <div class="text-center">
+                <a href="home" class="btn btn-default btn-rounded mb-4 text-center" style="font-size: larger;">Home</a>
+                <a href="daily" class="btn btn-default btn-rounded mb-4 text-center"
+                    style="font-size: larger;">Leaderboard</a>
 
-
+            </div>
+        </div>
 
 </div>
 </div>
+
+<script src="./js/game.js"></script>
