@@ -3,7 +3,6 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
 
-
 var db = require("./models");
 
 var app = express();
@@ -25,8 +24,6 @@ app.use(session({
   saveUninitialized: true
 }));
 
-
-
 // Handlebars
 app.engine(
   "handlebars",
@@ -46,7 +43,7 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/loginRoutes")(app);
 
-
+// Setting sync options to false
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
@@ -54,8 +51,6 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
-
-
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
