@@ -57,11 +57,14 @@ module.exports = function (app) {
       }).catch(function (err) {
         // console.log(err);
       }).then(function (data) {
-        // console.log(data);
+
+        if (!data) {
+          return res.status(401).json({ response: "An error occured with the information given." });
+        }
         var userDaily = data[0].dataValues.daily;
         var weekly = data[0].dataValues.weekly + req.body.score;
         //GOOD A user with the submitted credentials is present
-        if (data.length > 0 && userDaily === 0 && req.body.score) {
+        if (data.length === 0 && userDaily === 0 && req.body.score) {
           db.Users.update({ daily: req.body.score, weekly: weekly },
             {
               where: {

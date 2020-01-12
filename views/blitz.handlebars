@@ -44,6 +44,7 @@
         background: #064453;
         margin: 0 auto;
         text-align: center;
+        margin-bottom: 75px;
     }
 
     h2 {
@@ -56,7 +57,17 @@
     }
 
     #question {
-        color: #2D6E7E;
+        color: white;
+        min-height: 66px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        padding: .5rem;
+    }
+
+    .currentScore {
+        color: white;
         min-height: 66px;
         font-size: 1.3rem;
         font-weight: 700;
@@ -82,6 +93,7 @@
         min-height: 51px;
         padding: 1rem;
         letter-spacing: 2px;
+        text-transform: capitalize;
         margin-top: 3px;
         -webkit-transition: background 300ms;
         -o-transition: background 300ms;
@@ -120,39 +132,8 @@
         letter-spacing: 5px;
     }
 
-    #resetscore {
-        background: #064453;
-        -webkit-transition-duration: 300ms;
-        -o-transition-duration: 300ms;
-        transition-duration: 300ms;
-    }
-
-    #resetscore:hover {
-        background: #194235;
-        cursor: pointer;
-    }
-
-    #hscore {
-        font-weight: 900;
-        background: #064453;
-        ;
-    }
-
-    #skip {
-        padding: .8rem;
-        margin-top: 3px;
-        background: #064453;
-        color: white;
-        text-align: center;
-        -webkit-transition-duration: 300ms;
-        -o-transition-duration: 300ms;
-        transition-duration: 300ms;
-        margin-left: 420px;
-    }
-
-    #skip:hover {
-        background: #194235;
-        cursor: pointer;
+    .logo {
+        margin-top: 75px;
     }
 
     small {
@@ -219,11 +200,19 @@
         -webkit-animation-iteration-count: infinite;
         animation-iteration-count: infinite;
     }
+
+    #results {
+        display: none;
+        visibility: hidden;
+    }
 </style>
 
 <div>
 
     <body>
+        <iframe width="0" height="0" src="https://www.youtube.com/embed/vlEN8svyHj8?controls=0?rel=0&autoplay=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
         <div class="logo text-center img-thumbnail">
             <img src="https://fontmeme.com/permalink/200111/bacd36bc684cf0b846b598897dd552c6.png">
         </div>
@@ -231,98 +220,18 @@
             <h2> </h2>
             <div class="container twidth make-flex">
                 <p id="question"></p>
-                <div class="optnContainer make-flex">
-                    <!--
-                    <p id="optn1" class="answer"></p>
-                    <p id="optn2" class="answer"></p>
-                    <p id="optn3" class="answer"></p>
-                    <p id="optn4" class="answer"></p>
-                    -->
-                    <div id="waiting"></div>
-                    <div id="waitanim"></div>
+                <div id="results">
+                    <h1>Your Score - <span id="score"></span></h1>
+
                 </div>
+                <div class="optnContainer make-flex">
+
+                </div>
+                <p class="currentScore">Current Score - <span class="currentScore" id="userScore"></span></p>
             </div>
-            <div class="score twidth make-flex">
-                <p id="hscore">0</p>
-                <p id="resetscore">Scoreboard </p>
-            </div>
-            <p id="skip" class="twidth">Skip Question</p>
-    </body>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        // Grabbing all divs as vars
-        var ans = document.querySelectorAll(".answer");
-        var resetScore = document.querySelector("#resetscore");
-        var skipQues = document.querySelector("#skip");
-        var waiting = document.querySelector("#waiting");
-        var loadAnim = document.querySelector("#waitanim");
-        var curScore = 0;
-        var data;
 
-        function randIndex() {
-            return Math.floor(Math.random() * 4);
-        }
 
-        function updateQues(response) {
-            data = response.data.results[0];
-            document.querySelector("#question").innerHTML = data.question;
-            var options = data.incorrect_answers;
-            options.splice(randIndex(), 0, data.correct_answer);
-            document.querySelector("#optn1").innerHTML = options[0];
-            document.querySelector("#optn2").innerHTML = options[1];
-            document.querySelector("#optn3").innerHTML = options[2];
-            document.querySelector("#optn4").innerHTML = options[3];
-            loading(false);
-        }
-        for (var i = 0; i < ans.length; i++) {
-            ans[i].addEventListener("click", function () {
-                checkAnswer(this);
-            });
-        }
-        function checkAnswer(ele) {
-            if (ele.innerHTML === data.correct_answer) {
-                ele.classList.add("correct");
-                loading(true);
-                document.querySelector("#hscore").innerHTML = ++curScore;
-                changeQues();
-            } else {
-                ele.classList.add("incorrect");
-                loading(true);
-                document.querySelector("#hscore").innerHTML = --curScore;
-                changeQues();
-            }
-        }
-        function changeQues() {
-            setTimeout(function () {
-                for (var j = 0; j < ans.length; j++) {
-                    ans[j].classList.remove("incorrect")
-                    ans[j].classList.remove("correct")
-                }
-                fetchReq();
-            }, 800)
-        }
-        // this is the loading animation 
-        function loading(fire) {
-            if (fire) {
-                waiting.classList.add("loading");
-                loadAnim.classList.add("animation");
-            } else {
-                waiting.classList.remove("loading");
-                loadAnim.classList.remove("animation");
-            }
-        }
-        // I had a reset button for the score but now it is going to be the start button
-        resetScore.addEventListener("click", function (argument) {
-            curScore = 0;
-            document.querySelector("#hscore").innerHTML = curScore;
-        });
-        skipQues.addEventListener("click", function () {
-            loading(false);
-            fetchReq();
-        })
-
-    </script>
 
 </div>
 </div>

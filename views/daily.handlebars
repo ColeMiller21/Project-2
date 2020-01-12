@@ -6,8 +6,6 @@
         background-size: 100% 100%;
     }
 
-
-
     .button {
         padding: .8rem;
         margin-top: 3px;
@@ -17,19 +15,43 @@
         margin-bottom: 50px;
     }
 
-
-
-
-
     .img-thumbnail {
         background: transparent !important;
         border: 0px solid transparent;
     }
 
+    .btn {
+        color: white !important;
+        border: 3px solid white;
+        border-radius: 0px;
+        width: 150px;
+        color: rgb(48, 45, 45);
+        margin: 10px;
+        background: transparent !important;
+        font-size: 14px;
+        border-radius: 5px;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
+    }
 
+    @-webkit-keyframes glow {
+        from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(44, 231, 231), 0 0 40px rgb(12, 3, 90), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(12, 3, 90), 0 0 70px rgb(12, 3, 90);
+        }
+
+        to {
+            text-shadow: 0 0 10px white, 0 0 20px #fff, 0 0 30px #064453, 0 0 40px rgb(4, 4, 97), 0 0 50px rgb(12, 3, 90), 0 0 60px rgb(4, 4, 97), 0 0 70px rgb(4, 4, 97);
+        }
+    }
+
+    .logo {
+        margin-top: 75px;
+    }
 
     .table {
         color: white;
+        border: 1px solid gray;
     }
 </style>
 
@@ -40,6 +62,10 @@
     <body>
         <div class="logo text-center img-thumbnail">
             <img class="img-thumbnail" src="https://fontmeme.com/permalink/200111/b067326b9386d07b69cd2d261c62ecb1.png">
+        </div>
+        <br>
+        <div class="text-center">
+            <a href="home" class="btn btn-default btn-rounded mb-4 text-center" style="font-size: larger;">Home</a>
         </div>
         <br>
         <div class="container">
@@ -59,3 +85,4 @@
 </div>
 
 <script src="./js/leaderboardDaily.js"></script>
+
