@@ -18,6 +18,10 @@
         background: transparent !important;
         border: 0px solid transparent;
     }
+
+    #score-table {
+        color: white;
+    }
 </style>
 
 
@@ -117,31 +121,21 @@
         <div class="logo text-center img-thumbnail">
             <img class="img-thumbnail" src="https://fontmeme.com/permalink/200111/b067326b9386d07b69cd2d261c62ecb1.png">
         </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>384</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>500</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>3409</td>
-                </tr>
-            </tbody>
-        </table>
+        <br>
+        <div class="container">
+            <table class="table" id="score-table">
+                <thead class="thead">
+                    <tr>
+                        <th scope="col">Place</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{!-- this is where the data will go --}}
+                </tbody>
+            </table>
+        </div>
 </div>
-</div>
+
+<script src="./js/leaderboardDaily.js"></script>
