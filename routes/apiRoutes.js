@@ -1,19 +1,35 @@
 var db = require("../models");
 var questions = require("./questionGet");
+var cron = require('node-cron');
 
 var currentQuizDaily = {};
 var userQuizDaily = {};
 
 // Helper functions
-questions().then(function (results) {
-  // console.log(JSON.stringify(results, null, 2));
-  currentQuizDaily = results.currentQuiz;
-  userQuizDaily = results.userQuiz;
+
+function gettingQuestions() {
+  questions().then(function (results) {
+    // console.log(JSON.stringify(results, null, 2));
+    currentQuizDaily = results.currentQuiz;
+    userQuizDaily = results.userQuiz;
+    console.log("something");
+  });
+}
+
+// Running the function initially
+gettingQuestions();
+// Running the new quiz grab and score reset every 24h at midnight
+cron.schedule('0 0 * * *', () => {
+  gettingQuestions();
+  // Resetting peoples daily scores
+  db.Users.update({ daily: 0 }).then(function (data) {
+    console.log(data);
+  });
 });
 
 // Function that accepts a function and a bool to see if the user is logged in
 function checkLogInReject(res, logged, cb) {
-  if (1 === 1) {
+  if (logged) {
     return cb();
   } else {
     res.status(401).json({ response: "The user is not logged in" });

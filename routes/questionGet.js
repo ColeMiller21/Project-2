@@ -15,7 +15,6 @@ async function createQuestions() {
     return await userQuizCreate();
 }
 
-
 // This is the main meat of the app, accessess the api to get questions and stores it in a array as an object
 async function getQuestion() {
     // Creating a random category
@@ -105,6 +104,9 @@ async function removeFiller() {
     }
     return;
 }
+
+// Function that creates a user facing quiz for the api to push
+// This simply pushes the correct answer into the falseAnswers array
 async function userQuizCreate() {
     var quizes = {};
     var tempQuiz = triviaQuestions;
@@ -115,14 +117,12 @@ async function userQuizCreate() {
     return quizes;
 }
 
-
 // Function that accepts a minimum val and a maximum val and creates a random int between the two
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 
 // Function that shuffles an array
 function arrShuffle(array) {
@@ -146,5 +146,3 @@ function arrShuffle(array) {
 }
 
 module.exports = createQuestions;
-
-// removeFiller();

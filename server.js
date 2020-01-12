@@ -3,7 +3,6 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
 
-
 var db = require("./models");
 
 var app = express();
@@ -25,8 +24,6 @@ app.use(session({
   saveUninitialized: true
 }));
 
-
-
 // Handlebars
 app.engine(
   "handlebars",
@@ -36,17 +33,12 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Running the new quiz grab and score reset every 24h at midnight
-cron.schedule('0 0 * * *', () => {
-  // This is where the functions to do the actions described above wil be placed
-});
-
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/loginRoutes")(app);
 
-
+// Setting sync options to false
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
@@ -55,7 +47,12 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-
+// This is a function to reset the scores after a week
+cron.schedule('0 0 * * SUN', () => {
+  db.Users.update({ weekly: 0 }).then(function (data) {
+    console.log(data);
+  });
+});
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
