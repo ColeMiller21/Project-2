@@ -65,6 +65,7 @@ module.exports = function (app) {
 
   // Submit a score
   app.post("/api/submit", function (req, res) {
+    console.log(req.body);
     checkLogInReject(res, req, function () {
       db.Users.findAll({
         where: {
@@ -77,10 +78,10 @@ module.exports = function (app) {
         if (!data) {
           return res.status(401).json({ success: false, response: "An error occured with the information given." });
         }
-        var userDaily = data[0].dataValues.daily;
-        var weekly = data[0].dataValues.weekly + req.body.score;
+        var userDaily = parseInt(data[0].dataValues.daily);
+        var weekly = parseInt(data[0].dataValues.weekly) + parseInt(req.body.score);
         //GOOD A user with the submitted credentials is present
-        if (data.length === 0 && userDaily === 0 && req.body.score) {
+        if (data.length > 0 && userDaily === 0 && req.body.score > 0) {
           db.Users.update({ daily: req.body.score, weekly: weekly },
             {
               where: {

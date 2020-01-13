@@ -24,16 +24,16 @@ module.exports = function (app) {
                     req.session.loggedin = true;
                     req.session.username = data[0].dataValues.username;
                     req.session.email = email;
-                    return res.status(200).json({ response: "The user has been logged in." });
+                    return res.status(200).json({ success: true, response: "The user has been logged in." });
                 } else {
                     console.log("no");
                     // If the data returned has nothing than a status code of 400 is sent to signify a failure
-                    return res.status(401).json({ response: "This user does not exist.  Please make sure the credentials are correct." });
+                    return res.status(401).json({ success: false, response: "This user does not exist.  Please make sure the credentials are correct." });
                 }
             });
 
         } else {
-            return res.status(401).json({ response: "This user does not exist.  Please make sure the credentials are correct." });
+            return res.status(401).json({ success: false, response: "This user does not exist.  Please make sure the credentials are correct." });
         }
     });
 
@@ -55,7 +55,7 @@ module.exports = function (app) {
                 // Checking if the response from the query returned anything
                 // If something is returned then the response is ended
                 if (data.length > 0) {
-                    return res.status(401).json({ response: "This email is already in use." });
+                    return res.status(401).json({ success: false, response: "This email is already in use." });
                 } else {
                     // If no user was returned with from the previous query
                     // Then a new user is created with the credentials from the user
@@ -64,11 +64,11 @@ module.exports = function (app) {
                     }).catch(function (err) {
                         // If an error occurs for any reason than the connection is terminated
                         if (err) {
-                            return res.status(500).json({ response: "An error has occurred." });
+                            return res.status(500).json({ success: false, response: "An error has occurred." });
                         }
                     }).then(function () {
                         // A status code of 200 is sent to signify a success
-                        return res.status(200).json({ response: "This user has been created." });
+                        return res.status(200).json({ success: true, response: "This user has been created." });
                     })
                 }
             });

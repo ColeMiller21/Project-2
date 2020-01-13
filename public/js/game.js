@@ -15,7 +15,7 @@ $.ajax({
     url: "/api/quiz",
     method: "GET"
 }).then(function (data) {
-    console.log(data)
+    // console.log(data)
     questions = data;
     nextQuestion();
 })
@@ -25,7 +25,7 @@ function nextQuestion() {
     var currentObj = questions[counter];
     currentQuestion = currentObj.question;
     currentAnswer = currentObj.answer;
-    console.log(currentAnswer)
+    // console.log(currentAnswer)
     answers = currentObj.falseAnswers;
     questionValue = currentObj.value;
     emptyAnswers();
@@ -53,7 +53,8 @@ $("body").on("click", ".answer", function () {
         console.log(userScore)
         displayResults();
         // api call to send the userScore to the backend
-        $.post("/api/submit", userScore, function (data) {
+        $.post("/api/submit", { score: userScore }, function (res, data) {
+            console.log(res);
             if (data) {
                 console.log("data sent")
             } else {
