@@ -20,11 +20,13 @@ module.exports = function (app) {
                 console.log(data);
                 // If the data returned has returned more than one entry than the user is considered logged in
                 if (data.length > 0) {
+                    console.log("success");
                     req.session.loggedin = true;
                     req.session.username = data[0].dataValues.username;
                     req.session.email = email;
                     return res.status(200).json({ response: "The user has been logged in." });
                 } else {
+                    console.log("no");
                     // If the data returned has nothing than a status code of 400 is sent to signify a failure
                     return res.status(401).json({ response: "This user does not exist.  Please make sure the credentials are correct." });
                 }

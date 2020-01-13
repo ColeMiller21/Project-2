@@ -56,22 +56,25 @@ $("#login-button").on("click", function (event) {
       email: email,
       password: password
     };
-    console.log("Log in successful");
-    //sending user to home after log in successful
-    window.location.href = "/home";
+    //sending loginUser to loginRoutes
+    $.ajax("/user/auth", {
+      type: "POST",
+      data: loginUser
+    }).then(function (data) {
+      console.log(data);
+      console.log(data.status);
+      console.log("User Logged In")
+      console.log("Data submitted for login");
+      //sending user to home after log in successful
+      window.location.href = "/home";
+    });
+
   } else {
     console.log("error with login");
   };
   console.log(loginUser)
 
-  //sending loginUser to loginRoutes
-  $.ajax("/user/auth", {
-    type: "POST",
-    data: loginUser
-  }).then(function () {
-    console.log("User Logged In")
 
-  })
 });
 
 
