@@ -4,7 +4,7 @@ var loadAnim = document.querySelector("#waitanim");
 var counter = 0;
 var correct = 0;
 var wrong = 0;
-var userScore = 0;
+var userScore = 1;
 var userChoice = "";
 var questions = [];
 
