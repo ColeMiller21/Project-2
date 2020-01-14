@@ -16,7 +16,8 @@ $.ajax({
     // console.log(data)
     questions = data;
     nextQuestion();
-})
+});
+
 
 // function to generate the next series of questions
 function nextQuestion() {
@@ -27,6 +28,7 @@ function nextQuestion() {
     questionValue = currentObj.value;
     // will empty the answers div
     emptyAnswers();
+    startTime();
     $("#question").text(currentQuestion);
     if (questionValue === null) {
         questionValue = 100;
@@ -124,3 +126,27 @@ function arrShuffle(array) {
     }
     return array;
 }
+
+
+var timeLeft = 10;
+var timeCounter = 0;
+
+function startTime() {
+    var timeLeft = 10;
+    var timeCounter = 0;
+    var timer = $("#timer");
+    timer.text(10);
+    // console.log(timeLeft - timeCounter);
+    function timeIt() {
+        timeCounter++;
+        // console.log(timeLeft - timeCounter);
+        $("#timer").text(timeLeft - timeCounter);
+        if (timeCounter === timeLeft) {
+            // console.log("out of time")
+            clearInterval(timer);
+            nextQuestion();
+        }
+    }
+    var timer = setInterval(timeIt, 1000)
+}
+startTime();
