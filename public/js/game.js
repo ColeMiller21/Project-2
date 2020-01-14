@@ -1,6 +1,4 @@
 var ans = $(".answer");
-var waiting = document.querySelector("#waiting");
-var loadAnim = document.querySelector("#waitanim");
 var counter = 0;
 var correct = 0;
 var wrong = 0;
@@ -10,7 +8,7 @@ var questions = [];
 
 
 
-
+// ajax call to get the questions from backend
 $.ajax({
     url: "/api/quiz",
     method: "GET"
@@ -20,37 +18,41 @@ $.ajax({
     nextQuestion();
 })
 
-
+// function to generate the next series of questions
 function nextQuestion() {
     var currentObj = questions[counter];
     currentQuestion = currentObj.question;
     currentAnswer = currentObj.answer;
-    // console.log(currentAnswer)
     answers = currentObj.falseAnswers;
     questionValue = currentObj.value;
+    // will empty the answers div
     emptyAnswers();
     $("#question").text(currentQuestion);
     if (questionValue === null) {
         questionValue = 100;
     }
     $("#scoreValue").text(questionValue);
+    //this will show the answers
     showAnswers();
     $("#userScore").text(userScore)
 
 };
 
 $("body").on("click", ".answer", function () {
-    console.log("firing")
     $("#userScore").text(userScore)
+    // decides which answer the user chooses and uses the text to match with answer
     userChoice = $(this).text();
     questionChosen($(this));
-    console.log("-------" + counter)
+    // if the score counter is less than 10 continue running next question
     if (counter < 10) {
         nextQuestion();
-    } else {
+    }
+    //if the counter is 10 this will run
+    else {
         console.log("counter reached");
         $("#results").css({ "display": "block", "visibility": "visible" });
-        console.log(userScore)
+        console.log(userScore);
+        // question div will go away and will display the results div
         displayResults();
         // api call to send the userScore to the backend
         $.post("/api/submit", { score: userScore }, function (res, data) {
@@ -65,6 +67,7 @@ $("body").on("click", ".answer", function () {
 
 });
 
+// function that tells if the answer is right or wrong
 function questionChosen() {
     console.log(userChoice)
     if (userChoice === currentAnswer) {
@@ -79,7 +82,7 @@ function questionChosen() {
 
     }
 };
-
+// function to show the answers in the div
 function showAnswers() {
     arrShuffle(answers);
     for (var i = 0; i < answers.length; i++) {
@@ -87,13 +90,13 @@ function showAnswers() {
 
     }
 }
-
+// function to empty the answer div
 function emptyAnswers() {
     $(".optnContainer").empty();
 }
 
 
-
+// function to display the results div after the game
 function displayResults() {
     var resultsDiv = $(".resultContainer");
     $("#finalScore").text(userScore);
