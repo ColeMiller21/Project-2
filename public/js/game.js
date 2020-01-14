@@ -52,20 +52,7 @@ $("body").on("click", ".answer", function () {
     }
     //if the counter is 10 this will run
     else {
-        console.log("counter reached");
-        $("#results").css({ "display": "block", "visibility": "visible" });
-        console.log(userScore);
-        // question div will go away and will display the results div
-        displayResults();
-        // api call to send the userScore to the backend
-        $.post("/api/submit", { score: userScore }, function (res, data) {
-            console.log(res);
-            if (data) {
-                console.log("data sent")
-            } else {
-                console.log("no data sent")
-            }
-        })
+        finishQuiz();
     }
 });
 // function that tells if the answer is right or wrong
@@ -131,8 +118,30 @@ function startTime() {
             // console.log("out of time")
             clearInterval(timer);
             counter++
-            nextQuestion();
+            if (counter < 10) {
+                nextQuestion();
+            } else {
+                finishQuiz();
+            }
+
         }
     }
     intervalTimer = setInterval(timeIt, 1000)
+}
+
+function finishQuiz() {
+    console.log("counter reached");
+    $("#results").css({ "display": "block", "visibility": "visible" });
+    console.log(userScore);
+    // question div will go away and will display the results div
+    displayResults();
+    // api call to send the userScore to the backend
+    $.post("/api/submit", { score: userScore }, function (res, data) {
+        console.log(res);
+        if (data) {
+            console.log("data sent")
+        } else {
+            console.log("no data sent")
+        }
+    });
 }
