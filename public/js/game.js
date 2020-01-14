@@ -6,7 +6,6 @@ var userScore = 1;
 var userChoice = "";
 var questions = [];
 var intervalTimer = "";
-
 // ajax call to get the questions from backend
 $.ajax({
     url: "/api/quiz",
@@ -16,8 +15,6 @@ $.ajax({
     questions = data;
     nextQuestion();
 });
-
-
 // function to generate the next series of questions
 function nextQuestion() {
     clearInterval(intervalTimer);
@@ -29,7 +26,6 @@ function nextQuestion() {
     questionValue = currentObj.value;
     // will empty the answers div
     emptyAnswers();
-    startTime();
     $("#question").text(currentQuestion);
     if (questionValue === null) {
         questionValue = 100;
@@ -39,7 +35,6 @@ function nextQuestion() {
     showAnswers();
     $("#userScore").text(userScore)
 };
-
 $("body").on("click", ".answer", function () {
     clearInterval(timer);
     $("#userScore").text(userScore)
@@ -102,7 +97,6 @@ function arrShuffle(array) {
     }
     return array;
 }
-
 function startTime() {
     var timeLeft = 10;
     var timeCounter = 0;
@@ -123,12 +117,10 @@ function startTime() {
             } else {
                 finishQuiz();
             }
-
         }
     }
     intervalTimer = setInterval(timeIt, 1000)
 }
-
 function finishQuiz() {
     console.log("counter reached");
     $("#results").css({ "display": "block", "visibility": "visible" });
